@@ -5,7 +5,7 @@ namespace App\Models\Campaña;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Campania extends Model
+class Campaña extends Model
 {
     use HasFactory;
 

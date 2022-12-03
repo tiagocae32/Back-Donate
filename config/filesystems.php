@@ -56,6 +56,13 @@ return [
             'throw' => false,
         ],
 
+        'imagenesCampanias' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/imagenesCampanias/'),
+            'url' => env('APP_URL').'/storage/imagenesCampanias',
+            'visibility' => 'public',
+        ],
+
     ],
 
     /*
