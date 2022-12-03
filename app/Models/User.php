@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\User;
+namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -58,19 +58,19 @@ class User extends Authenticatable implements JWTSubject
 
     // Relaciones
     public function rol() {
-        return $this->belongsTo('App\Models\Rol', 'rol_id', 'id');
+        return $this->belongsTo('App\Models\User\Rol', 'rol_id', 'id');
     }
     
     public function campanias(){
-        return $this->hasMany('App\Models\Campania', 'user_id', 'id')->orderBy("created_at", "desc");
+        return $this->hasMany('App\Models\Campaña\Campaña', 'user_id', 'id')->orderBy("created_at", "desc");
     }
 
     public function comentarios(){
-        return $this->hasMany('App\Models\Comentario', 'user_id', 'id');
+        return $this->hasMany('App\Models\Campaña\Comentario', 'user_id', 'id');
     }
 
     public function donaciones(){
-        return $this->hasMany('App\Models\Donacion', 'user_id', 'id');
+        return $this->hasMany('App\Models\Campaña\Donacion', 'user_id', 'id');
     }
 
     public static function permisos(){

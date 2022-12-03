@@ -4,7 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
-use App\Models\User\User;
+use App\Models\User;
 use App\Services\Users\RegisterUser;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -18,6 +18,7 @@ class AuthenticationController extends Controller
     }
 
     public function login(Request $request){
+        //dd("entra");
         
         $credentials = $request->only('name', 'password');
 
