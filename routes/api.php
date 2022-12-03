@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\User\AuthenticationController;
 use App\Http\Controllers\Campañas\CampañasController;
 use App\Http\Controllers\Campañas\ComentariosController;
 use App\Http\Controllers\Campañas\DonacionesController;
@@ -19,9 +20,9 @@ use App\Http\Controllers\User\UsersController;
 Route::prefix('donate')->group(function () {
 
      // AUTENTICACION
-     Route::post('login', [AuthenticationController::class, 'login']);
-     Route::post('loginGoogle', [AuthenticationController::class, 'loginGoogle']);
-     Route::post('logout', [AuthenticationController::class, 'logout']);
+     Route::post('/login', [AuthenticationController::class, 'login']);
+     Route::post('/loginGoogle', [AuthenticationController::class, 'loginGoogle']);
+     Route::post('/logout', [AuthenticationController::class, 'logout']);
      Route::post('/register', [AuthenticationController::class, 'register']);
 
      Route::middleware(['auth:api'])->group(function () {

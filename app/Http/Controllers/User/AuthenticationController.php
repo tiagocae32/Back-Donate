@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Authentication;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\StoreUserRequest;
 use App\Models\User\User;
 use App\Services\Users\RegisterUser;
 use Illuminate\Http\Request;
@@ -52,7 +52,7 @@ class AuthenticationController extends Controller
         return responseUser(['message' => 'Credenciales incorrectas'], 400);
     }
 
-    public function register(RegisterRequest $request){
+    public function register(StoreUserRequest $request){
 
         // Always use form request validation
         // Not use request->all to validate

@@ -7,7 +7,7 @@
  use Exception;
  use App\Services\Campañas\UploadImage;
  
- class CreateCampania {
+ class CreateCampaña {
 
     public static function create(StoreCampañaRequest $request){
 

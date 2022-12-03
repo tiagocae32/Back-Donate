@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Campañas;
 
 use App\Http\Requests\StoreCampañaRequest;
 use App\Models\Campaña\Campaña;
-use App\Services\Campanias\CreateCampania;
+use App\Services\Campañas\CreateCampaña;
+use App\Http\Controllers\Controller;
 
-class CampaniasController extends Controller
+class CampañasController extends Controller
 {
 
     // Retorna todas las campañias(Para que las vea el admin)
@@ -52,7 +53,7 @@ class CampaniasController extends Controller
         
         $request->validated();
 
-        $newCampania = CreateCampania::create($request);
+        $newCampania = CreateCampaña::create($request);
 
         return responseUser($newCampania, 200);
 

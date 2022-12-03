@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Campañas;
 
 use App\Models\Campaña\Campaña;
 use App\Models\Campaña\Donacion;
 use Exception;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class DonacionesController extends Controller
 {
