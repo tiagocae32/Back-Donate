@@ -18,7 +18,7 @@ class CreateImagesTable extends Migration
             $table->string("image");
             $table->bigInteger("campania_id")->unsigned();
             $table->timestamps();
-            $table->foreign('campania_id')->references('id')->on('campanias');
+            $table->foreign('campania_id')->references('id')->on('campañas');
             $table->softDeletes();
         });
     }

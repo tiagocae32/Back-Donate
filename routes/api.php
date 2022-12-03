@@ -33,10 +33,10 @@ Route::prefix('donate')->group(function () {
         Route::get('/searchUser/{user}', [UsersController::class, 'searchUser']);
 
         // Routes Campañas
-        //Route::get("/getAllCampanias", [CampaniasController::class, "indexAdmin"]);
-        Route::get('/getCampanias', [CampañasController::class, 'index']);
-        Route::post('/createCampania', [CampañasController::class, 'store']);
-        Route::get('/searchCampania/{name}', [CampañasController::class, 'searchCampania']);
+        //Route::get("/getAllCampañas", [CampañasController::class, "indexAdmin"]);
+        Route::get('/getCampañas', [CampañasController::class, 'index']);
+        Route::post('/createCampaña', [CampañasController::class, 'store']);
+        Route::get('/searchCampaña/{name}', [CampañasController::class, 'searchCampania']);
 
         // Routes comentarios
         Route::post('/createComentario', [ComentariosController::class, 'store']);

@@ -15,6 +15,6 @@ class Image extends Model
     ];
 
     public function campania(){
-        return $this->belongsTo('App\Models\Campania', 'campania_id', 'id');
+        return $this->belongsTo('App\Models\Campaña\Campaña', 'campania_id', 'id');
     }
 }

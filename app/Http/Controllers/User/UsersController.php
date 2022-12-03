@@ -34,11 +34,11 @@ class UsersController extends Controller
     public function index(Request $request){
         $deleted = !is_null($request->deleted) && $request->deleted === 'true' ? true : false;  
         if($deleted){
-            $users = User::onlyTrashed()->with("campanias")->get();
+            $users = User::onlyTrashed()->with("campañas")->get();
         }else{
             $users =  User::select(['id','name','email','rol_id'])
             ->where(['rol_id' => 2])
-            ->with(['campanias' => function($query){
+            ->with(['campañas' => function($query){
                 $query->select(['id', 'user_id']);
             }])->get();
         }

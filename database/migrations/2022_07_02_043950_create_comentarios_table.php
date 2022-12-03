@@ -19,7 +19,7 @@ class CreateComentariosTable extends Migration
             $table->bigInteger("campania_id")->unsigned();
             $table->text('comentario');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('campania_id')->references('id')->on('campanias');
+            $table->foreign('campania_id')->references('id')->on('campañas');
             $table->timestamps();
             $table->softDeletes();
         });

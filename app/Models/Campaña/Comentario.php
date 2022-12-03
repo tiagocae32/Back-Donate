@@ -26,6 +26,6 @@ class Comentario extends Model
     }
     public function campania()
     {
-        return $this->belongsTo('App\Models\Campania', 'user_id', 'id');
+        return $this->belongsTo('App\Models\Campaña\Campaña', 'user_id', 'id');
     }
 }

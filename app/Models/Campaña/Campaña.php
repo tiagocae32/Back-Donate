@@ -9,7 +9,7 @@ class Campaña extends Model
 {
     use HasFactory;
 
-    protected $table = "campanias";
+    protected $table = "campañas";
 
     protected $fillable = [
         'name',
@@ -31,15 +31,15 @@ class Campaña extends Model
     }
 
     public function comentarios(){
-        return $this->hasMany('App\Models\Comentario', 'campania_id', 'id');
+        return $this->hasMany('App\Models\Campaña\Comentario', 'campania_id', 'id');
     }
 
     public function donaciones(){
-        return $this->hasMany('App\Models\Donacion', 'campania_id', 'id');
+        return $this->hasMany('App\Models\Campaña\Donacion', 'campania_id', 'id');
     }
 
     public function imagenes(){
-        return $this->hasMany('App\Models\Image', 'campania_id', 'id');
+        return $this->hasMany('App\Models\Campaña\Image', 'campania_id', 'id');
     }
 
     //Scopes

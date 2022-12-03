@@ -18,11 +18,11 @@ class User extends Authenticatable implements JWTSubject
     protected $table = "users";
 
     const RELATIONS = [
-        'campanias',
-        'campanias.comentarios',
-        'campanias.comentarios.user',
-        'campanias.user',
-        'campanias.imagenes'    
+        'campañas',
+        'campañas.comentarios',
+        'campañas.comentarios.user',
+        'campañas.user',
+        'campañas.imagenes'    
     ];
 
     /**
@@ -61,7 +61,7 @@ class User extends Authenticatable implements JWTSubject
         return $this->belongsTo('App\Models\User\Rol', 'rol_id', 'id');
     }
     
-    public function campanias(){
+    public function campañas(){
         return $this->hasMany('App\Models\Campaña\Campaña', 'user_id', 'id')->orderBy("created_at", "desc");
     }
 
@@ -94,7 +94,7 @@ class User extends Authenticatable implements JWTSubject
 
     //Scopes
     public static function scopeUser($query, $username){
-        return $query->where('id', '!=', 1)->where('name', 'like', '%' . $username . '%')->with(["campanias"])->get();
+        return $query->where('id', '!=', 1)->where('name', 'like', '%' . $username . '%')->with(["campañas"])->get();
     }
 
     // Jwt Functions

@@ -56,10 +56,10 @@ return [
             'throw' => false,
         ],
 
-        'imagenesCampanias' => [
+        'imagenesCampañas' => [
             'driver' => 'local',
-            'root' => storage_path('app/public/imagenesCampanias/'),
-            'url' => env('APP_URL').'/storage/imagenesCampanias',
+            'root' => storage_path('app/public/imagenesCampañas/'),
+            'url' => env('APP_URL').'/storage/imagenesCampañas',
             'visibility' => 'public',
         ],
 

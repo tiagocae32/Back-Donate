@@ -12,8 +12,8 @@ class UploadImage {
             $nameFile = $file->getClientOriginalName();
             $path = '/' . $campaniaId . '/';
             //guardando el archivo en el path indicado
-             Storage::disk("imagenesCampanias")->putFileAs($path, $file, $nameFile);
-             $url = Storage::disk('imagenesCampanias')->url($path . $nameFile);
+             Storage::disk("imagenesCampañas")->putFileAs($path, $file, $nameFile);
+             $url = Storage::disk('imagenesCampañas')->url($path . $nameFile);
              (new Image(["image" => $url, "campania_id" => $campaniaId]))->save();
        }
     }
