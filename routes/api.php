@@ -5,6 +5,7 @@ use App\Http\Controllers\Campañas\ComentariosController;
 use App\Http\Controllers\Campañas\DonacionesController;
 use App\Http\Controllers\Campañas\PdfCampañaController;
 use App\Http\Controllers\User\UsersController;
+use App\Http\Middleware\CheckToken;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,21 +23,21 @@ Route::prefix('donate')->group(function () {
      // AUTENTICACION
      Route::post('/login', [AuthenticationController::class, 'login']);
      Route::post('/loginGoogle', [AuthenticationController::class, 'loginGoogle']);
-     Route::post('/logout', [AuthenticationController::class, 'logout']);
-     Route::post('/register', [AuthenticationController::class, 'register']);
+     Route::post('/register', [AuthenticationController::class, 'register']);        
 
-     Route::middleware(['auth:api'])->group(function () {
+     Route::middleware(["auth:sanctum"])->group(function () {
 
-        // Route Users      
-        Route::get('/getUsers', [UsersController::class, 'index']); 
+        // Route Users
+        Route::post('/logout', [AuthenticationController::class, 'logout']);      
         Route::get('/getUserInfo', [UsersController::class, 'getUserInfo']);
+        Route::get('/getUsers', [UsersController::class, 'index']); 
         Route::get('/searchUser/{user}', [UsersController::class, 'searchUser']);
 
         // Routes Campañas
         //Route::get("/getAllCampañas", [CampañasController::class, "indexAdmin"]);
-        Route::get('/getCampañas', [CampañasController::class, 'index']);
-        Route::post('/createCampaña', [CampañasController::class, 'store']);
-        Route::get('/searchCampaña/{name}', [CampañasController::class, 'searchCampania']);
+        Route::get('/getCampanias', [CampañasController::class, 'index']);
+        Route::post('/createCampania', [CampañasController::class, 'store']);
+        Route::get('/searchCampania/{name}', [CampañasController::class, 'searchCampania']);
 
         // Routes comentarios
         Route::post('/createComentario', [ComentariosController::class, 'store']);

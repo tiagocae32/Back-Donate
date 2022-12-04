@@ -7,6 +7,7 @@ use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 use App\Services\Users\RegisterUser;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthenticationController extends Controller
@@ -18,15 +19,19 @@ class AuthenticationController extends Controller
     }
 
     public function login(Request $request){
-        //dd("entra");
-        
+
         $credentials = $request->only('name', 'password');
 
-        if($token = JWTAuth::attempt($credentials)){
-            return $this->collectAndReturnUserData($token);
+        if(!Auth::attempt($credentials)){
+            return responseUser(['message' => "Credenciales incorrectas" ], 400);
         }
 
-        return $this->returnErrorLogin();
+        $user = User::where("name", $request->input("name"))->firstOrFail();
+
+        $token = $user->createToken('auth_token', ['*'])->plainTextToken;
+
+        return responseUser(['token'  => $token, 'user' => $user->load("campañas")],200);
+
     }
 
     public function loginGoogle(Request $request){
@@ -44,7 +49,7 @@ class AuthenticationController extends Controller
     public function collectAndReturnUserData($token , $user = null){
         $userCollect = collect([
             'token'  => $token,
-            'user' => User::datosLogin($user ? $user->id : null),
+            'user' => User::datosLogin(),
         ]);
         return responseUser($userCollect,200);
     }
@@ -66,9 +71,6 @@ class AuthenticationController extends Controller
     }
 
     public function logout(){
-        if (JWTAuth::invalidate(JWTAuth::getToken())) {
-            return responseUser(['message' => 'Cerrada correctamente'], 200);
-        }
-        return responseUser(['message' => 'Error al cerrar sesion'], 401);
+        Auth::logout();
     }
 }

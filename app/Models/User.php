@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
@@ -79,12 +80,12 @@ class User extends Authenticatable implements JWTSubject
                 ->join('roles_permisos', 'permisos.id', '=', 'roles_permisos.permiso_id')
                 ->join('roles','roles.id','=','roles_permisos.rol_id')
                 ->join('users','users.rol_id','=','roles.id')
-                ->where('users.id', auth()->id())
+                ->where('users.id', Auth::id())
                 ->get();
     }
 
-    public static function datosLogin($idLoginGoogle = null){
-        $user = User::find(!$idLoginGoogle ? auth()->id() : $idLoginGoogle);
+    public static function datosLogin(){
+        $user = User::find(Auth::id());
         if($user->rol_id == 2){
             $user->load(self::RELATIONS);
         }

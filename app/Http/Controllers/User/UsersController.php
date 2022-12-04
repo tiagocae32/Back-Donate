@@ -7,6 +7,7 @@ use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
@@ -16,12 +17,10 @@ class UsersController extends Controller
         $this->middleware("auth");
     }*/
 
-    public function getUserInfo(){
-        if(auth()->check()){
-            $info = User::datosLogin();
-            return responseUser($info,200);
-        }
-        responseUser(['message'=>'Prohibido'],403);
+    public function getUserInfo(Request $request)
+    {
+        $user = User::datosLogin();
+        return responseUser($user, 200);
     }
 
     //Busca los usuarios que contengan la palabra ingresada por el usuario. Buscamos por nombre de usuario
