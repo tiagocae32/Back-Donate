@@ -8,7 +8,6 @@ use App\Models\User;
 use App\Services\Users\RegisterUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthenticationController extends Controller
 {
@@ -22,40 +21,28 @@ class AuthenticationController extends Controller
 
         $credentials = $request->only('name', 'password');
 
-        if(!Auth::attempt($credentials)){
-            return responseUser(['message' => "Credenciales incorrectas" ], 400);
+        if(Auth::attempt($credentials)){
+            $user = User::where("name", $request->input("name"))->firstOrFail();
+            return $this->generateToken($user);
         }
 
-        $user = User::where("name", $request->input("name"))->firstOrFail();
-
-        $token = $user->createToken('auth_token', ['*'])->plainTextToken;
-
-        return responseUser(['token'  => $token, 'user' => $user->load("campañas")],200);
-
+        return responseUser(['message' => "Credenciales incorrectas" ], 400);
     }
 
     public function loginGoogle(Request $request){
-      
+
         $user = User::where('email', $request->input('email'))->get()->first();
-        
-        if($user && $token = JWTAuth::fromUser($user)){
-            return $this->collectAndReturnUserData($token, $user);
+
+        if(!$user) return responseUser(['message' => "Credenciales incorrectas" ], 400);
+
+        if(Auth::loginUsingId($user->id)){
+            return $this->generateToken($user);
         }
-
-        return $this->returnErrorLogin();
     }
 
-
-    public function collectAndReturnUserData($token , $user = null){
-        $userCollect = collect([
-            'token'  => $token,
-            'user' => User::datosLogin(),
-        ]);
-        return responseUser($userCollect,200);
-    }
-
-    public function returnErrorLogin(){
-        return responseUser(['message' => 'Credenciales incorrectas'], 400);
+    public function generateToken($user){
+        $token = $user->createToken('auth_token', ['*'])->plainTextToken;
+        return responseUser(['token'  => $token, 'user' => User::datosLogin()],200);
     }
 
     public function register(StoreUserRequest $request){
@@ -67,7 +54,6 @@ class AuthenticationController extends Controller
         $newUser = RegisterUser::register($request);
 
         return responseUser($newUser,200);
-        
     }
 
     public function logout(){

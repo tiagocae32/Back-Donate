@@ -6,6 +6,7 @@ use App\Http\Requests\StoreCampañaRequest;
 use App\Models\Campaña\Campaña;
 use App\Services\Campañas\CreateCampaña;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class CampañasController extends Controller
 {
@@ -18,7 +19,7 @@ class CampañasController extends Controller
 
     // Retorna todas las campañias salvo las del usuario que esta logueado
     public function index(){
-       $campañas =  Campaña::select(['id','name','description','fondos_a_recaudar','fondos_recaudado_actual','user_id'])
+       $campañas = Campaña::select(['id','name','description','fondos_a_recaudar','fondos_recaudado_actual','user_id'])
        ->with([
         'user' => function($query) {
             $query->select(['id','name']);
@@ -32,7 +33,7 @@ class CampañasController extends Controller
         'imagenes' => function ($query){
             $query->select(['campania_id', 'image']);
         },  
-        ])->whereNotIn('user_id' , [auth()->user()->id])->orderBy('id', 'desc')->get();
+        ])->whereNotIn('user_id' , [Auth::id()])->orderBy('id', 'desc')->get();
        return $campañas;
     }
 

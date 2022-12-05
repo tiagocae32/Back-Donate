@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class CheckToken
 {
@@ -17,9 +18,10 @@ class CheckToken
      */
     public function handle(Request $request, Closure $next)
     {
-        if($request->bearerToken()){
+        //$header = $request->header('Authorization');
+        //if (Str::startsWith($header, 'Bearer')) {
             return $next($request);
-        }
-        return responseUser(['message' => 'Prohibido'], 403);
+        //}
+        //return responseUser(['message' => 'Prohibido'], 403);
     }
 }

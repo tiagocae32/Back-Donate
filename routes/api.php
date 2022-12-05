@@ -25,7 +25,7 @@ Route::prefix('donate')->group(function () {
      Route::post('/loginGoogle', [AuthenticationController::class, 'loginGoogle']);
      Route::post('/register', [AuthenticationController::class, 'register']);        
 
-     Route::middleware(["auth:sanctum"])->group(function () {
+     Route::middleware("auth:sanctum")->group(function () {
 
         // Route Users
         Route::post('/logout', [AuthenticationController::class, 'logout']);      

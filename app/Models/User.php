@@ -10,20 +10,23 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\HasApiTokens;
-use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable implements JWTSubject
+class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
     protected $table = "users";
 
-    const RELATIONS = [
+    const ALLRELATIONS = [
         'campañas',
         'campañas.comentarios',
         'campañas.comentarios.user',
         'campañas.user',
         'campañas.imagenes'    
+    ];
+
+    const RELATIONSUSERADMIN = [
+        'campañas',  
     ];
 
     /**
@@ -85,10 +88,17 @@ class User extends Authenticatable implements JWTSubject
     }
 
     public static function datosLogin(){
-        $user = User::find(Auth::id());
-        if($user->rol_id == 2){
-            $user->load(self::RELATIONS);
-        }
+        $user = User::select(['id', "email", "name", "rol_id"])->with([
+            'campañas',
+            'campañas.comentarios',
+            'campañas.comentarios.user',
+            'campañas.user',
+            'campañas.imagenes'       
+        ])->where('id' , Auth::id())->get()->first();
+        /*if($user->rol_id == 2){
+            $user->load(self::ALLRELATIONS);
+            $user["permisos"] = self::permisos();
+        }*/
         $user["permisos"] = self::permisos();
         return $user;
     }
@@ -96,27 +106,5 @@ class User extends Authenticatable implements JWTSubject
     //Scopes
     public static function scopeUser($query, $username){
         return $query->where('id', '!=', 1)->where('name', 'like', '%' . $username . '%')->with(["campañas"])->get();
-    }
-
-    // Jwt Functions
-
-    /**
-     * Get the identifier that will be stored in the subject claim of the JWT.
-     *
-     * @return mixed
-     */
-    public function getJWTIdentifier()
-    {
-        return $this->getKey();
-    }
-
-    /**
-     * Return a key value array, containing any custom claims to be added to the JWT.
-     *
-     * @return array
-     */
-    public function getJWTCustomClaims()
-    {
-        return [];
     }
 }
