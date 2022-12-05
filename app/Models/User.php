@@ -10,8 +10,9 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\HasApiTokens;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
@@ -87,19 +88,28 @@ class User extends Authenticatable
                 ->get();
     }
 
-    public static function datosLogin(){
+    public static function datosUser($idLoginGoogle = null){
+        $id = !$idLoginGoogle ? Auth::id() : $idLoginGoogle;
+
         $user = User::select(['id', "email", "name", "rol_id"])->with([
             'campañas',
-            'campañas.comentarios',
-            'campañas.comentarios.user',
-            'campañas.user',
-            'campañas.imagenes'       
-        ])->where('id' , Auth::id())->get()->first();
-        /*if($user->rol_id == 2){
-            $user->load(self::ALLRELATIONS);
+            'campañas.comentarios' => function($query){
+                $query->select(['id','campaña_id', 'user_id' ,'created_at', 'comentario']);
+            },
+            'campañas.comentarios.user' => function($query){
+                $query->select(['id','name','created_at']);
+            },
+            'campañas.user' => function ($query){
+                $query->select(['id','name', 'email']);
+            },
+            'campañas.imagenes' => function ($query){
+                $query->select(['id','campaña_id', 'image']);
+            }       
+        ])->where('id' , $id)->get()->first();
+        
+        if($user->rol_id !== 1){
             $user["permisos"] = self::permisos();
-        }*/
-        $user["permisos"] = self::permisos();
+        }
         return $user;
     }
 
@@ -107,4 +117,19 @@ class User extends Authenticatable
     public static function scopeUser($query, $username){
         return $query->where('id', '!=', 1)->where('name', 'like', '%' . $username . '%')->with(["campañas"])->get();
     }
+	/**
+	 * Get the identifier that will be stored in the subject claim of the JWT.
+	 * @return mixed
+	 */
+	public function getJWTIdentifier() {
+        return $this->getKey();
+	}
+	
+	/**
+	 * Return a key value array, containing any custom claims to be added to the JWT.
+	 * @return array
+	 */
+	public function getJWTCustomClaims() {
+        return [];
+	}
 }

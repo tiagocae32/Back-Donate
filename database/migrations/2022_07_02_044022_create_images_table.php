@@ -16,9 +16,9 @@ class CreateImagesTable extends Migration
         Schema::create('images', function (Blueprint $table) {
             $table->id();
             $table->string("image");
-            $table->bigInteger("campania_id")->unsigned();
+            $table->bigInteger("campaña_id")->unsigned();
             $table->timestamps();
-            $table->foreign('campania_id')->references('id')->on('campañas');
+            $table->foreign('campaña_id')->references('id')->on('campañas');
             $table->softDeletes();
         });
     }

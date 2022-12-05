@@ -7,6 +7,7 @@ use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UsersController extends Controller
 {
@@ -16,9 +17,9 @@ class UsersController extends Controller
         $this->middleware("auth");
     }*/
 
-    public function getUserInfo(Request $request)
+    public function getUserInfo()
     {
-        $user = User::datosLogin();
+        $user = User::datosUser(); //JWTAuth::toUser(JWTAuth::getToken());
         return responseUser($user, 200);
     }
 

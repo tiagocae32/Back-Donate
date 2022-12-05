@@ -15,20 +15,20 @@
         $data["user_id"] = auth()->user()->id;
         $data["fondos_recaudado_actual"] = 0;
 
-        $newCampania = new Campaña($data);
+        $newCampaña = new Campaña($data);
 
         startTransaction();
 
         try{
-            $newCampania->save();
+            $newCampaña->save();
             if($request->hasFile("images")){
                $files = $request->file("images");
-               UploadImage::uploadImage($files, $newCampania->id);
+               UploadImage::uploadImage($files, $newCampaña->id);
             }
             commit();
 
-            $newCampania = Campaña::with(Campaña::MODEL_RELATIONS)->find($newCampania->id);
-            return $newCampania;
+            $newCampaña = Campaña::with(Campaña::MODEL_RELATIONS)->find($newCampaña->id);
+            return $newCampaña;
         }catch(Exception $exception){
             rollBack();
             return responseUser(['message' => $exception->getMessage()], 500);

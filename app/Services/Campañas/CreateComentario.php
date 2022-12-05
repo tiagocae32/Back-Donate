@@ -16,7 +16,7 @@
 
         $newComentario = Comentario::create([
             'user_id' => auth()->user()->id,
-            'campania_id' => $data['campania_id'],
+            'campaña_id' => $data['campaña_id'],
             'comentario' => $data['comentario']
         ]);
         try{

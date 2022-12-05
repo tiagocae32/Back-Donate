@@ -14,13 +14,13 @@ class Donacion extends Model
 
     protected $fillable = [
         'dinero_donado',
-        'campania_id',
+        'campaña_id',
         'user_id',
     ];
 
     // Relaciones
-    public function campania(){
-        return $this->belongsTo('App\Models\Campaña\Campaña', 'campania_id', 'id');
+    public function campaña(){
+        return $this->belongsTo('App\Models\Campaña\Campaña', 'campaña_id', 'id');
     }
 
     public function user(){
@@ -30,7 +30,7 @@ class Donacion extends Model
     public static function validatorGeneral($data){
         $rules = [
             'dinero_donado' => ['required','integer'],
-            'campania_id' => ['required','integer','exists:campañas,id'],
+            'campaña_id' => ['required','integer','exists:campañas,id'],
             'user_id' => ['required','integer','exists:users,id']
         ];
 

@@ -28,9 +28,9 @@ class DonacionesController extends Controller
         $newDonacion = new Donacion($data);
 
         // Sumando el dinero donado a la tabla campañas en la columna fondos recaudado actual
-        $campania = Campaña::find($data["campania_id"]);
-        $campania->fondos_recaudado_actual += $data["dinero_donado"];
-        $campania->save();
+        $campaña = Campaña::find($data["campaña_id"]);
+        $campaña->fondos_recaudado_actual += $data["dinero_donado"];
+        $campaña->save();
 
         try{
             $newDonacion->save();

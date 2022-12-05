@@ -11,10 +11,10 @@ class Image extends Model
 
     protected $fillable = [
         'image',
-        'campania_id'
+        'campaña_id'
     ];
 
-    public function campania(){
-        return $this->belongsTo('App\Models\Campaña\Campaña', 'campania_id', 'id');
+    public function campaña(){
+        return $this->belongsTo('App\Models\Campaña\Campaña', 'campaña_id', 'id');
     }
 }

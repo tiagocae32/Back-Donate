@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->integer("dinero_donado");
             $table->bigInteger("user_id")->unsigned();
-            $table->bigInteger("campania_id")->unsigned();
-            $table->foreign('campania_id')->references('id')->on('campañas');
+            $table->bigInteger("campaña_id")->unsigned();
+            $table->foreign('campaña_id')->references('id')->on('campañas');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });

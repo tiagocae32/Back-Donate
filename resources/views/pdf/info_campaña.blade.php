@@ -8,9 +8,9 @@
 </head>
 <body>
     <div>
-        Nombre de la campaña: {!! $campania->name !!}
+        Nombre de la campaña: {!! $campaña->name !!}
 
-        Descripcion de la campaña: {!! $campania->description !!}
+        Descripcion de la campaña: {!! $campaña->description !!}
     </div>
 </body>
 </html>

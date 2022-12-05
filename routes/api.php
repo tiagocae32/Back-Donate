@@ -25,7 +25,7 @@ Route::prefix('donate')->group(function () {
      Route::post('/loginGoogle', [AuthenticationController::class, 'loginGoogle']);
      Route::post('/register', [AuthenticationController::class, 'register']);        
 
-     Route::middleware("auth:sanctum")->group(function () {
+     Route::middleware(CheckToken::class)->group(function () {
 
         // Route Users
         Route::post('/logout', [AuthenticationController::class, 'logout']);      
@@ -37,7 +37,7 @@ Route::prefix('donate')->group(function () {
         //Route::get("/getAllCampañas", [CampañasController::class, "indexAdmin"]);
         Route::get('/getCampanias', [CampañasController::class, 'index']);
         Route::post('/createCampania', [CampañasController::class, 'store']);
-        Route::get('/searchCampania/{name}', [CampañasController::class, 'searchCampania']);
+        Route::get('/searchCampania/{name}', [CampañasController::class, 'searchCampaña']);
 
         // Routes comentarios
         Route::post('/createComentario', [ComentariosController::class, 'store']);

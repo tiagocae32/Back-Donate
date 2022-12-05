@@ -31,19 +31,19 @@ class Campaña extends Model
     }
 
     public function comentarios(){
-        return $this->hasMany('App\Models\Campaña\Comentario', 'campania_id', 'id');
+        return $this->hasMany('App\Models\Campaña\Comentario', 'campaña_id', 'id');
     }
 
     public function donaciones(){
-        return $this->hasMany('App\Models\Campaña\Donacion', 'campania_id', 'id');
+        return $this->hasMany('App\Models\Campaña\Donacion', 'campaña_id', 'id');
     }
 
     public function imagenes(){
-        return $this->hasMany('App\Models\Campaña\Image', 'campania_id', 'id');
+        return $this->hasMany('App\Models\Campaña\Image', 'campaña_id', 'id');
     }
 
     //Scopes
-    public static function scopeCampania($query, $nameCampania){
-        return $query->whereNotIn('user_id', [auth()->user()->id])->where('name', 'like', '%' . $nameCampania . '%')->with(self::MODEL_RELATIONS)->get();
+    public static function scopeCampaña($query, $nameCampaña){
+        return $query->whereNotIn('user_id', [auth()->user()->id])->where('name', 'like', '%' . $nameCampaña . '%')->with(self::MODEL_RELATIONS)->get();
     }
 }

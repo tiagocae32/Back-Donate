@@ -11,9 +11,9 @@ class PdfCampañaController extends Controller
 {
     public function downLoadPdfCampaña(Request $request){
 
-        $campania = Campaña::find($request->idCampania);
+        $campaña = Campaña::find($request->idCampaña);
 
-        $pdf = PDF::loadView('pdf.info_campania', compact('campania'));
+        $pdf = PDF::loadView('pdf.info_campaña', compact('campaña'));
         return $pdf->download('InfoCampaña.pdf');
     }
 }

@@ -25,27 +25,27 @@ class CampañasController extends Controller
             $query->select(['id','name']);
         },
         'comentarios' => function ($query){
-            $query->select(['id','campania_id', 'user_id', 'comentario', 'created_at']);
+            $query->select(['id','campaña_id', 'user_id', 'comentario', 'created_at']);
         },
         'comentarios.user' => function ($query){
             $query->select(['id','name']);
         },
         'imagenes' => function ($query){
-            $query->select(['campania_id', 'image']);
+            $query->select(['campaña_id', 'image']);
         },  
         ])->whereNotIn('user_id' , [Auth::id()])->orderBy('id', 'desc')->get();
        return $campañas;
     }
 
     // Retorna la informacion de una campañia en particular
-    public function getCampania($id){
+    public function getCampaña($id){
         $campaña = Campaña::where(['id' => $id])->with(Campaña::MODEL_RELATIONS)->get()->first();
         return $campaña;
     }
 
     //Busca las campañas que contengan la palabra ingresada por el usuario. Buscamos por nombre de campaña
-    public function searchCampania ($name){
-        $campaña = Campaña::campania($name);
+    public function searchCampaña ($name){
+        $campaña = Campaña::campaña($name);
         return $campaña;
     }
 
@@ -54,17 +54,17 @@ class CampañasController extends Controller
         
         $request->validated();
 
-        $newCampania = CreateCampaña::create($request);
+        $newCampaña = CreateCampaña::create($request);
 
-        return responseUser($newCampania, 200);
+        return responseUser($newCampaña, 200);
 
     }
 
     // Elimina una campaña
     public function destroy($id){
-        $campaniaDelete = Campaña::find($id);
-        if(auth()->user()->id === $campaniaDelete->user_id){
-            $campaniaDelete->delete();
+        $campañaDelete = Campaña::find($id);
+        if(auth()->user()->id === $campañaDelete->user_id){
+            $campañaDelete->delete();
             return responseUser(["message" => "Campaña eliminada"],200);
         }
     }

@@ -15,7 +15,7 @@ class Comentario extends Model
     //Fillable
     protected $fillable = [
         'user_id',
-        'campania_id',
+        'campaña_id',
         'comentario'
     ];
 
@@ -24,7 +24,7 @@ class Comentario extends Model
     {
         return $this->belongsTo('App\Models\User', 'user_id', 'id');
     }
-    public function campania()
+    public function campaña()
     {
         return $this->belongsTo('App\Models\Campaña\Campaña', 'user_id', 'id');
     }

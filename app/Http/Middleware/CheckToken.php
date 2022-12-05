@@ -18,10 +18,9 @@ class CheckToken
      */
     public function handle(Request $request, Closure $next)
     {
-        //$header = $request->header('Authorization');
-        //if (Str::startsWith($header, 'Bearer')) {
+        if ($request->bearerToken()) {
             return $next($request);
-        //}
-        //return responseUser(['message' => 'Prohibido'], 403);
+        }
+        return responseUser(['message' => 'Prohibido'], 403);
     }
 }
