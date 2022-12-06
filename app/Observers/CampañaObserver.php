@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Mail;
 class CampañaObserver
 {
     /**
-     * Handle the Campaña "created" event.
+     * Handle the Campania "created" event.
      *
-     * @param  \App\Models\Campaña\Campaña  $campaña
+     * @param  \App\Models\Campaña\Campaña $campaña
      * @return void
      */
     public function created(Campaña $campaña)
@@ -26,7 +26,7 @@ class CampañaObserver
     }
 
     /**
-     * Handle the Campaña "updated" event.
+     * Handle the Campania "updated" event.
      *
      * @param  \App\Models\Campaña\Campaña $campaña
      * @return void
@@ -37,7 +37,7 @@ class CampañaObserver
     }
 
     /**
-     * Handle the Campaña "deleted" event.
+     * Handle the Campania "deleted" event.
      *
      * @param  \App\Models\Campaña\Campaña $campaña
      * @return void
@@ -48,9 +48,9 @@ class CampañaObserver
     }
 
     /**
-     * Handle the Campaña "restored" event.
+     * Handle the Campania "restored" event.
      *
-     * @param \App\Models\Campaña\Campaña $campaña
+     * @param  \App\Models\Campaña\Campaña $campaña
      * @return void
      */
     public function restored(Campaña $campaña)
@@ -59,9 +59,9 @@ class CampañaObserver
     }
 
     /**
-     * Handle the Campaña "force deleted" event.
+     * Handle the Campania "force deleted" event.
      *
-     * @param \App\Models\Campaña\Campaña $campaña
+     * @param  \App\Models\Campaña\Campaña $campaña
      * @return void
      */
     public function forceDeleted(Campaña $campaña)

@@ -57,7 +57,6 @@ class CampañasController extends Controller
         $newCampaña = CreateCampaña::create($request);
 
         return responseUser($newCampaña, 200);
-
     }
 
     // Elimina una campaña
