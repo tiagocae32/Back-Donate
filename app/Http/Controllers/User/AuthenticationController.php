@@ -18,34 +18,6 @@ class AuthenticationController extends Controller
         $this->middleware('auth:api', ['except' => ['login', 'loginGoogle', 'register']]);
     }
 
-    /*public function login(Request $request){
-
-        $credentials = $request->only('name', 'password');
-
-        if(Auth::attempt($credentials)){
-            $user = User::where("name", $request->input("name"))->firstOrFail();
-            return $this->generateToken($user);
-        }
-
-        return responseUser(['message' => "Credenciales incorrectas" ], 400);
-    }
-
-    public function loginGoogle(Request $request){
-
-        $user = User::where('email', $request->input('email'))->get()->first();
-
-        if(!$user) return responseUser(['message' => "Credenciales incorrectas" ], 400);
-
-        if(Auth::loginUsingId($user->id)){
-            return $this->generateToken($user);
-        }
-    }
-
-    public function generateToken($user){
-        $token = $user->createToken('auth_token', ['*'])->plainTextToken;
-        return responseUser(['token'  => $token, 'user' => User::datosLogin()],200);
-    }*/
-
     public function login(Request $request){
         
         $credentials = $request->only('name', 'password');
