@@ -63,6 +63,8 @@ class CampañasController extends Controller
     public function destroy($id){
         $campañaDelete = Campaña::find($id);
         if(auth()->user()->id === $campañaDelete->user_id){
+            $campañaDelete->comentarios()->delete();
+            $campañaDelete->imagenes()->delete();
             $campañaDelete->delete();
             return responseUser(["message" => "Campaña eliminada"],200);
         }
