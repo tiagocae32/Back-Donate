@@ -23,7 +23,7 @@ Route::prefix('donate')->group(function () {
      // AUTENTICACION
      Route::post('/login', [AuthenticationController::class, 'login']);
      Route::post('/loginGoogle', [AuthenticationController::class, 'loginGoogle']);
-     Route::post('/register', [AuthenticationController::class, 'register']);        
+     Route::post('/registrarUsuario', [AuthenticationController::class, 'register']);        
 
      Route::middleware(CheckToken::class)->group(function () {
 
@@ -31,25 +31,25 @@ Route::prefix('donate')->group(function () {
         Route::post('/logout', [AuthenticationController::class, 'logout']);      
         Route::get('/getUserInfo', [UsersController::class, 'getUserInfo']);
         Route::get('/getUsers', [UsersController::class, 'index']); 
-        Route::get('/searchUser/{user}', [UsersController::class, 'searchUser']);
+        Route::get('/buscarUsuarios/{user}', [UsersController::class, 'searchUsers']);
 
         // Routes Campañas
         //Route::get("/getAllCampañas", [CampañasController::class, "indexAdmin"]);
         Route::get('/getCampanias', [CampañasController::class, 'index']);
         Route::get('/getCampania/{id}', [CampañasController::class, 'getCampaña']);
-        Route::post('/createCampania', [CampañasController::class, 'store']);
-        Route::get('/searchCampania/{name}', [CampañasController::class, 'searchCampaña']);
-        Route::delete('/deleteCampania/{id}', [CampañasController::class, 'destroy']);
+        Route::post('/crearCampania', [CampañasController::class, 'store']);
+        Route::get('/buscarCampanias/{name}', [CampañasController::class, 'searchCampaña']);
+        Route::delete('/eliminarCampania/{id}', [CampañasController::class, 'destroy']);
 
         // Routes comentarios
         Route::post('/createComentario', [ComentariosController::class, 'store']);
-        Route::delete('/deleteComentario/{id}', [ComentariosController::class, 'destroy']);
+        Route::delete('/eliminarComentario/{id}', [ComentariosController::class, 'destroy']);
         
         // Routes Donaciones
         Route::post('/donaciones', [DonacionesController::class, 'store']);
 
         // Routes Pdf Campañas
-        Route::get('/downloadPdfCampania', [PdfCampañaController::class, 'downloadPdfCampaña']);
+        Route::get('/descargarPdfCampania', [PdfCampañaController::class, 'downloadPdfCampaña']);
 
      }); 
 });

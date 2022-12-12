@@ -66,7 +66,7 @@ class CampañasController extends Controller
             $campañaDelete->comentarios()->delete();
             $campañaDelete->imagenes()->delete();
             $campañaDelete->delete();
-            return responseUser(["message" => "Campaña eliminada"],200);
+            return responseUser($campañaDelete,200);
         }
     }
 }

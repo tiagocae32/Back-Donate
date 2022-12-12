@@ -24,9 +24,9 @@ class UsersController extends Controller
     }
 
     //Busca los usuarios que contengan la palabra ingresada por el usuario. Buscamos por nombre de usuario
-    public function searchUser ($userName){
-        $user = User::user($userName); // Usando query scopes;
-        return $user;
+    public function searchUsers($userName){
+        $users = User::users($userName); // Usando query scopes;
+        return $users;
     }
 
     //Index users no deleted
@@ -35,11 +35,18 @@ class UsersController extends Controller
         if($deleted){
             $users = User::onlyTrashed()->with("campañas")->get();
         }else{
-            $users =  User::select(['id','name','email','rol_id'])
-            ->where(['rol_id' => 2])
-            ->with(['campañas' => function($query){
-                $query->select(['id', 'user_id']);
-            }])->get();
+            $users = User::select(['id', 'name', 'email', 'rol_id'])
+                ->where('rol_id', '!=', 1)
+                ->with(
+                    [
+                        'campañas' => function ($query) {
+                            $query->select(['id', 'user_id']);
+                        },
+                        'rol' => function ($query) {
+                            $query->select(['id', 'rol']);
+                }
+            ]
+            )->get();
         }
         return $users;
     }

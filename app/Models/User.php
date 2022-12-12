@@ -114,7 +114,7 @@ class User extends Authenticatable implements JWTSubject
     }
 
     //Scopes
-    public static function scopeUser($query, $username){
+    public static function scopeUsers($query, $username){
         return $query->where('id', '!=', 1)->where('name', 'like', '%' . $username . '%')->with(["campañas"])->get();
     }
 	/**
