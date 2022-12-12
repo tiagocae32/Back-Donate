@@ -38,7 +38,7 @@ Route::prefix('donate')->group(function () {
         Route::get('/getCampanias', [CampañasController::class, 'index']);
         Route::get('/getCampania/{id}', [CampañasController::class, 'getCampaña']);
         Route::post('/crearCampania', [CampañasController::class, 'store']);
-        Route::get('/buscarCampanias/{name}', [CampañasController::class, 'searchCampaña']);
+        Route::get('/buscarCampanias/{name}', [CampañasController::class, 'searchCampañas']);
         Route::delete('/eliminarCampania/{id}', [CampañasController::class, 'destroy']);
 
         // Routes comentarios

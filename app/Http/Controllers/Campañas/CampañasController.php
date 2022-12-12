@@ -44,9 +44,9 @@ class CampañasController extends Controller
     }
 
     //Busca las campañas que contengan la palabra ingresada por el usuario. Buscamos por nombre de campaña
-    public function searchCampaña ($name){
-        $campaña = Campaña::campaña($name);
-        return $campaña;
+    public function searchCampañas($name){
+        $campañas = Campaña::campañas($name);
+        return $campañas;
     }
 
     // Crea una campaña

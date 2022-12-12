@@ -43,7 +43,7 @@ class Campaña extends Model
     }
 
     //Scopes
-    public static function scopeCampaña($query, $nameCampaña){
+    public static function scopeCampañas($query, $nameCampaña){
         return $query->whereNotIn('user_id', [auth()->user()->id])->where('name', 'like', '%' . $nameCampaña . '%')->with(self::MODEL_RELATIONS)->get();
     }
 }

@@ -115,7 +115,7 @@ class User extends Authenticatable implements JWTSubject
 
     //Scopes
     public static function scopeUsers($query, $username){
-        return $query->where('id', '!=', 1)->where('name', 'like', '%' . $username . '%')->with(["campañas"])->get();
+        return $query->where('id', '!=', 1)->where('name', 'like', '%' . $username . '%')->with(["campañas", "rol"])->get();
     }
 	/**
 	 * Get the identifier that will be stored in the subject claim of the JWT.
