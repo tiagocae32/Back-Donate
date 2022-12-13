@@ -30,7 +30,8 @@ Route::prefix('donate')->group(function () {
         // Route Users
         Route::post('/logout', [AuthenticationController::class, 'logout']);      
         Route::get('/getUserInfo', [UsersController::class, 'getUserInfo']);
-        Route::get('/getUsers', [UsersController::class, 'index']); 
+        Route::get('/getUsers', [UsersController::class, 'index']);
+        Route::put('/editarUsuario/{id}', [UsersController::class, 'update']); 
         Route::get('/buscarUsuarios/{user}', [UsersController::class, 'searchUsers']);
 
         // Routes Campañas

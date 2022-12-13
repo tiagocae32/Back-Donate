@@ -57,17 +57,31 @@ class UsersController extends Controller
     }
 
     public function update(Request $request, $id){
-        $datos = $request->all();
         $user = User::find($id);
 
         try{
             startTransaction();
+
+            $user->name = $request->input("user");
+            $user->email = $request->input("email");
+    
+            $user->save();
+            commit();
+            return responseUser($user,200);
+        }catch(Exception $error){
+            rollback();
+            responseUser(['message' => $error->getMessage()], 500);
+        }
+        /*try{
+            startTransaction();
             $user->fill($datos); // "Llenando el modelo con la informacion recibida en la request"
             if($user->isDirty()){ // Verificando si el modelo ha tenido alguna modificacion
                 $attrsChanged = $user->getDirty(); // Obteniendo los atributos que han sido modificados
+                //echo $attrsChanged;
                 foreach($attrsChanged as $key => $newData){
                     $user[$key] = $newData;
                 }
+                //echo $user;
                 $user->save();
                 commit();
                 return responseUser($user,200);
@@ -75,7 +89,7 @@ class UsersController extends Controller
         }catch(Exception $error){
             rollback();
             responseUser(['message' => $error->getMessage()], 500);
-        }
+        }*/
     }
 
     public function delete($id){
