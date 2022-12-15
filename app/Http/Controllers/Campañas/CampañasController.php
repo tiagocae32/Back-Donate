@@ -65,6 +65,7 @@ class CampañasController extends Controller
         if(auth()->user()->id === $campañaDelete->user_id){
             $campañaDelete->comentarios()->delete();
             $campañaDelete->imagenes()->delete();
+            $campañaDelete->donaciones()->delete();
             $campañaDelete->delete();
             return responseUser($campañaDelete->id,200);
         }

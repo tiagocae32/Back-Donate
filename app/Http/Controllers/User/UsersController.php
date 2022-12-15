@@ -35,7 +35,7 @@ class UsersController extends Controller
         if($deleted){
             $users = User::onlyTrashed()->with("campañas")->get();
         }else{
-            $users = User::select(['id', 'name', 'email', 'rol_id'])
+            $users = User::select(['id', 'name', 'email', 'rol_id', 'created_at'])
                 ->where('rol_id', '!=', 1)
                 ->with(
                     [
