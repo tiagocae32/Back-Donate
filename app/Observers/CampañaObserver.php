@@ -16,14 +16,13 @@ class CampañaObserver
      */
     public function created(Campaña $campaña)
     {
-        /*$userName = Auth()->user()->name;
+        $userName = Auth()->user()->name;
 
         $emailNotification = new EmailNotificationAdmin("tiagoviezzoli@gmail.com", 
         "Campaña Creada", 
         "El usuario $userName ha creado una campaña llamada {$campaña['name']} que tiene {$campaña['fondos_a_recaudar']} pesos como objetivo.");
 
         Mail::to('tiagoviezzoli@gmail.com')->send($emailNotification);
-        */
     }
 
     /**

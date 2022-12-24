@@ -7,50 +7,51 @@ use App\Http\Controllers\Campañas\PdfCampañaController;
 use App\Http\Controllers\User\UsersController;
 use App\Http\Middleware\CheckToken;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
-
 Route::prefix('donate')->group(function () {
 
-     // AUTENTICACION
-     Route::post('/login', [AuthenticationController::class, 'login']);
-     Route::post('/loginGoogle', [AuthenticationController::class, 'loginGoogle']);
-     Route::post('/registrarUsuario', [AuthenticationController::class, 'register']);        
+   // Auth routes
+   Route::controller(AuthenticationController::class)->group(function () {
+      Route::post('/login','login');
+      Route::post('/loginGoogle','loginGoogle');
+      Route::post('/registrarUsuario','register');
+   });
+     
+   Route::middleware(CheckToken::class)->group(function () {
 
-     Route::middleware(CheckToken::class)->group(function () {
+      Route::post('/logout', [AuthenticationController::class, 'logout']);
 
-        // Route Users
-        Route::post('/logout', [AuthenticationController::class, 'logout']);      
-        Route::get('/getUserInfo', [UsersController::class, 'getUserInfo']);
-        Route::get('/getUsers', [UsersController::class, 'index']);
-        Route::put('/editarUsuario/{id}', [UsersController::class, 'update']); 
-        Route::get('/buscarUsuarios/{user}', [UsersController::class, 'searchUsers']);
-
-        // Routes Campañas
-        //Route::get("/getAllCampañas", [CampañasController::class, "indexAdmin"]);
-        Route::get('/getCampanias', [CampañasController::class, 'index']);
-        Route::get('/getCampania/{id}', [CampañasController::class, 'getCampaña']);
-        Route::post('/crearCampania', [CampañasController::class, 'store']);
-        Route::get('/buscarCampanias/{name}', [CampañasController::class, 'searchCampañas']);
-        Route::delete('/eliminarCampania/{id}', [CampañasController::class, 'destroy']);
-
-        // Routes comentarios
-        Route::post('/createComentario', [ComentariosController::class, 'store']);
-        Route::delete('/eliminarComentario/{id}', [ComentariosController::class, 'destroy']);
+      // Users routes
+      Route::controller(UsersController::class)->group(function () {
+         Route::get('/getUserInfo','getUserInfo');
+         Route::get('/getUsers','index');
+         Route::put('/editarUsuario/{id}','update'); 
+         Route::get('/buscarUsuarios/{user}','searchUsers');
+      });
         
-        // Routes Donaciones
-        Route::post('/donaciones', [DonacionesController::class, 'store']);
+      // Campañas routes
+      Route::controller(CampañasController::class)->group(function () {
+         //Route::get("/getAllCampañas", [CampañasController::class, "indexAdmin"]);
+         Route::get('/getCampanias','index');
+         Route::get('/getCampania/{id}','getCampaña');
+         Route::post('/crearCampania','store');
+         Route::get('/buscarCampanias/{name}','searchCampañas');
+         Route::delete('/eliminarCampania/{id}','destroy');
+      });
 
-        // Routes Pdf Campañas
-        Route::get('/descargarPdfCampania', [PdfCampañaController::class, 'downloadPdfCampaña']);
+      // Comentarios routes
+      Route::controller(ComentariosController::class)->group(function () {
+         Route::post('/createComentario','store');
+         Route::delete('/eliminarComentario/{id}','destroy');
+      });   
+        
+        // Donaciones routes 
+        Route::controller(DonacionesController::class)->group(function () {
+            Route::post('/donaciones', 'store');
+        });
 
+        // Pdf campañas routes
+        Route::controller(PdfCampañaController::class)->group(function () {
+            Route::get('/descargarPdfCampania','downloadPdfCampaña');
+        });
      }); 
 });

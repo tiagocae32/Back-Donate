@@ -30,13 +30,15 @@ class SendEmailNewCampaña extends Command
     public function handle()
     {
 
-        $emailNotification = new EmailNotificationAdmin("tiagoviezzoli@gmail.com", 
+        /*$emailNotification = new EmailNotificationAdmin("tiagoviezzoli@gmail.com", 
         "Campaña Creada", 
         "Se ha creado una nueva campaña");
 
         Mail::to('tiagoviezzoli@gmail.com')->send($emailNotification);
 
         $this->info("Mail enviado");
+        */
+        return "hola";
         
     }
 }
