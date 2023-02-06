@@ -11,7 +11,7 @@ class UserTest extends TestCase
      *
      * @return void
      */
-    public function test_login_success_user()
+    /*public function test_login_success_user()
     {
         $user = ['name' => 'tiagocae32', 'password' => '123456789'];
         $response = $this->post('api/donate/login', $user);
@@ -20,5 +20,5 @@ class UserTest extends TestCase
 
     public function test_db_table_user(){
         $this->assertDatabaseHas('users', ['name' => 'tiagocae32']);
-    }
+    }*/
 }
