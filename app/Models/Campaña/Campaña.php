@@ -2,12 +2,13 @@
 
 namespace App\Models\Campaña;
 
+use App\Traits\CampañasTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Campaña extends Model
 {
-    use HasFactory;
+    use HasFactory, CampañasTrait;
 
     protected $table = "campañas";
 
@@ -41,9 +42,5 @@ class Campaña extends Model
     public function imagenes(){
         return $this->hasMany('App\Models\Campaña\Image', 'campaña_id', 'id');
     }
-
-    //Scopes
-    public static function scopeCampañas($query, $nameCampaña){
-        return $query->whereNotIn('user_id', [auth()->user()->id])->where('name', 'like', '%' . $nameCampaña . '%')->with(self::MODEL_RELATIONS)->get();
-    }
+    
 }

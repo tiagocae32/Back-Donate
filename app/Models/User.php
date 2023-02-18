@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -11,10 +12,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use App\Traits\UsersTrait;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes, UsersTrait;
 
     protected $table = "users";
 
@@ -88,35 +90,8 @@ class User extends Authenticatable implements JWTSubject
                 ->get();
     }
 
-    public static function datosUser($idLoginGoogle = null){
-        $id = !$idLoginGoogle ? Auth::id() : $idLoginGoogle;
+    
 
-        $user = User::select(['id', "email", "name", "rol_id"])->with([
-            'campañas',
-            'campañas.comentarios' => function($query){
-                $query->select(['id','campaña_id', 'user_id' ,'created_at', 'comentario']);
-            },
-            'campañas.comentarios.user' => function($query){
-                $query->select(['id','name','created_at']);
-            },
-            'campañas.user' => function ($query){
-                $query->select(['id','name', 'email']);
-            },
-            'campañas.imagenes' => function ($query){
-                $query->select(['id','campaña_id', 'image']);
-            }       
-        ])->where('id' , $id)->get()->first();
-        
-        if($user->rol_id !== 1){
-            $user["permisos"] = self::permisos();
-        }
-        return $user;
-    }
-
-    //Scopes
-    public static function scopeUsers($query, $username){
-        return $query->where('id', '!=', 1)->where('name', 'like', '%' . $username . '%')->with(["campañas", "rol"])->get();
-    }
 	/**
 	 * Get the identifier that will be stored in the subject claim of the JWT.
 	 * @return mixed

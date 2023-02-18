@@ -16,6 +16,7 @@ class RolesPermisosSeeder extends Seeder
     public function run()
     {
         $rolesPermisos = [
+            ['rol_id' =>  1, 'permiso_id' => 1],
             ['rol_id' =>  2, 'permiso_id' => 1],
             ['rol_id' =>  2, 'permiso_id' => 2],
             ['rol_id' =>  2, 'permiso_id' => 3],

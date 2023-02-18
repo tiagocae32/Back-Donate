@@ -15,6 +15,8 @@
 
             $data = $request->all();
 
+            $request->validated();
+
             $data['password'] = Hash::make($data['password']);
             $data['rol_id'] = 2;
             $newUser = new User($data);

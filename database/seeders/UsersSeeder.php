@@ -43,7 +43,7 @@ class UsersSeeder extends Seeder
             ]
         ];
         foreach($users as $user) {
-            User::firstOrCreate($user);
+            User::create($user);
         }
     }
 }

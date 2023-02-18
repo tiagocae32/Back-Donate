@@ -16,7 +16,7 @@ uses(Tests\TestCase::class,
 // Illuminate\Foundation\Testing\RefreshDatabase::class,
 )->in('Unit');
 
-uses(LazilyRefreshDatabase::class)->in('Unit');
+//uses(LazilyRefreshDatabase::class)->in('Unit');
 
 /*
 |--------------------------------------------------------------------------
