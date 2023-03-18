@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUserLoginRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 use App\Services\Users\RegisterUser;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -18,9 +20,11 @@ class AuthenticationController extends Controller
         $this->middleware('auth:api', ['except' => ['login', 'loginGoogle', 'register']]);
     }
 
-    public function login(Request $request){
+    public function login(StoreUserLoginRequest $request){
         
         $credentials = $request->only('name', 'password');
+
+        $request->validated();
 
         if($token = JWTAuth::attempt($credentials)){
             return $this->collectAndReturnUserData($token);
@@ -50,18 +54,14 @@ class AuthenticationController extends Controller
     }
 
     public function returnErrorLogin(){
-        return responseUser(['message' => 'Credenciales incorrectas'], 400);
+        returnErrors(['errors' => ['Credenciales incorrectas']], 400);
     }
 
     public function register(StoreUserRequest $request){
-
-        // Always use form request validation
-        // Not use request->all to validate
         $request->validated();
-
-        $newUser = RegisterUser::register($request);
-
+        $newUser = RegisterUser::register($request->all());
         return responseUser($newUser,200);
+        
     }
 
     public function logout(){

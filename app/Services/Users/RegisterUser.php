@@ -9,26 +9,14 @@
 
     class RegisterUser  {
 
-        public static function register(StoreUserRequest $request){
-
+        public static function register($data){
             startTransaction();
-
-            $data = $request->all();
-
-            $request->validated();
-
             $data['password'] = Hash::make($data['password']);
             $data['rol_id'] = 2;
             $newUser = new User($data);
-
-            try{
-                $newUser->save();
-                commit();
-                return $newUser;
-            }catch(Exception $exception){
-                rollback();
-                return responseUser(['message' => $exception->getMessage()], 500);
-            }
+            $newUser->save();
+            commit();
+            return $newUser;
         }
     }
 ?>

@@ -7,6 +7,10 @@ function responseUser($data,int $statusCode) : object {
     return response()->json($data, $statusCode);
 }
 
+function returnErrors($data,$statusCode){
+    abort(response()->json($data, $statusCode));
+}
+
 /* Funcion para comenzar una transaccion */
 function startTransaction() {
     DB::beginTransaction();
