@@ -2,10 +2,11 @@
 
 namespace App\Http\Requests;
 
+use App\Exceptions\ValidationsException;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Contracts\Validation\Validator;
 
-class StoreUserRequest extends FormRequest
+class StoreUserRegisterRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,9 +26,9 @@ class StoreUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'unique:users,name', 'string', 'max:30'],
+            'name' => ['required', 'unique:users,name', 'string','min:5', 'max:30'],
             'email' => ['required', 'unique:users,email', 'email', 'max:30'],
-            'password' => ['required', 'string', 'max:20'],
+            'password' => ['required', 'string', 'min:9', 'max:20'],
         ];
     }
 
@@ -40,5 +41,9 @@ class StoreUserRequest extends FormRequest
             'email.unique' => 'El mail ya ha sido registrado',
             'password.required' => 'La contraseña es obligatoria',
         ];
+    }
+
+    protected function failedValidation(Validator $validator){
+        throw new ValidationsException($validator,400);
     }
 }

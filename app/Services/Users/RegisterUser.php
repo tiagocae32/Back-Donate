@@ -2,10 +2,8 @@
 
     namespace App\Services\Users;
 
-    use App\Http\Requests\StoreUserRequest;
     use App\Models\User;
     use Illuminate\Support\Facades\Hash;
-    use Exception;
 
     class RegisterUser  {
 

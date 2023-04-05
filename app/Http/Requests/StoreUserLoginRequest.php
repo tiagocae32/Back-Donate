@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Exceptions\ValidationsException;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 
@@ -39,7 +40,7 @@ class StoreUserLoginRequest extends FormRequest
     }
 
     protected function failedValidation(Validator $validator){
-        returnErrors(['errors' => $validator->errors()->all()], 400);
+        throw new ValidationsException($validator,400);
     }
 
 }
