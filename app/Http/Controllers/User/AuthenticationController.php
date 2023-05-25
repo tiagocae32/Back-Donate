@@ -52,7 +52,7 @@ class AuthenticationController extends Controller
     }
 
     public function returnErrorLogin(){
-        returnErrors(['errors' => ['Credenciales incorrectas']], 400);
+        errors(['errors' => ['Credenciales incorrectas']], 400);
     }
 
     public function register(StoreUserRegisterRequest $request){

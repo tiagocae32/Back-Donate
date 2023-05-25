@@ -7,7 +7,7 @@ function responseUser($data,int $statusCode) : object {
     return response()->json($data, $statusCode);
 }
 
-function returnErrors($data,$statusCode){
+function errors($data,$statusCode){
     abort(response()->json($data, $statusCode));
 }
 

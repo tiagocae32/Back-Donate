@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Campañas;
 
+use App\Http\Controllers\CrudResourceController;
 use App\Http\Requests\StoreCampañaRequest;
 use App\Models\Campaña\Campaña;
 use App\Services\Campañas\CreateCampaña;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-class CampañasController extends Controller
+class CampañasController extends Controller //CrudResourceController
 {
 
     // Retorna todas las campañias(Para que las vea el admin)
