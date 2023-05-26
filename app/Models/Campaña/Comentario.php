@@ -11,6 +11,7 @@ class Comentario extends Model
 
     // Model Table
     protected $table = "comentarios";
+
     
     //Fillable
     protected $fillable = [

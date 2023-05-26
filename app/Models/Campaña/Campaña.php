@@ -2,6 +2,7 @@
 
 namespace App\Models\Campaña;
 
+use App\Models\Campaña\Image;
 use App\Traits\CampañasTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -40,7 +41,7 @@ class Campaña extends Model
     }
 
     public function imagenes(){
-        return $this->hasMany('App\Models\Campaña\Image', 'campaña_id', 'id');
+        return $this->morphMany(Image::class, 'imageable'); //$this->hasMany('App\Models\Campaña\Image', 'campaña_id', 'id');
     }
     
 }

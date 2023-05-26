@@ -23,7 +23,7 @@
             $newCampaña->save();
             if($request->hasFile("images")){
                $files = $request->file("images");
-               UploadImage::uploadImage($files, $newCampaña->id);
+               UploadImage::uploadImage($files, $newCampaña->id, Campaña::class);
             }
             commit();
 

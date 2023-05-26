@@ -17,4 +17,8 @@ class Image extends Model
     public function campaña(){
         return $this->belongsTo('App\Models\Campaña\Campaña', 'campaña_id', 'id');
     }
+
+    public function imageable(){
+        return $this->morphTo();
+    }
 }

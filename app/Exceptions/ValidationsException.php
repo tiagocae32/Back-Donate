@@ -15,6 +15,6 @@ class ValidationsException extends Exception {
     }
 
     public function render() {
-        returnErrors(["errors" => $this->validator->errors()->all()], $this->code);
+        errors(["errors" => $this->validator->errors()->all()], $this->code);
     }
 }
