@@ -34,7 +34,7 @@ trait UsersTrait {
                 $query->select(['id','name', 'email']);
             },
             'campañas.imagenes' => function ($query){
-                $query->select(['id','campaña_id', 'image']);
+                $query->select(['id','imageable_id', 'path']);
             }       
         ])->where('id' , $id)->get()->first();
         

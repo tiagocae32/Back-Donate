@@ -6,17 +6,17 @@ use Illuminate\Support\Facades\Storage;
 
 class UploadImage {
 
-    public static function uploadImage($files, $campañaId, $model){
+    public static function uploadImage($files, $imageable_id, $model){
 
-        dump($model);
+        //dump($campañaId);
 
         foreach($files as $file){
             $nameFile = $file->getClientOriginalName();
-            $path = '/' . $campañaId . '/';
+            $path = '/' . $imageable_id . '/';
             //guardando el archivo en el path indicado
              Storage::disk("imagenesCampañas")->putFileAs($path, $file, $nameFile);
-             //$url = Storage::disk('imagenesCampañas')->url($path . $nameFile);
-             (new Image(["image" => $nameFile, 'imageable_id' => $campañaId, 'imageable_type' => $model]))->save();
+             $newImage = new Image(["path" => $nameFile, 'imageable_id' => $imageable_id, 'imageable_type' => $model]);
+             $newImage->save();
        }
     }
 }

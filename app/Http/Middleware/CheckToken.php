@@ -21,6 +21,6 @@ class CheckToken
         if ($request->bearerToken()) {
             return $next($request);
         }
-        return responseUser(['message' => 'Prohibido'], 403);
+        return errors(['message' => 'Prohibido'], 403);
     }
 }

@@ -32,7 +32,7 @@ class CampañasController extends Controller //CrudResourceController
             $query->select(['id','name']);
         },
         'imagenes' => function ($query){
-            $query->select(['campaña_id', 'image']);
+            $query->select(['imageable_id', 'path']);
         },  
         ])->whereNotIn('user_id' , [Auth::id()])->orderBy('id', 'desc')->get();
        return $campañas;
