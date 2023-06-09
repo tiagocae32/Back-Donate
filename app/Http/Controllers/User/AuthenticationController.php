@@ -28,7 +28,7 @@ class AuthenticationController extends Controller
             return $this->collectAndReturnUserData($token);
         }
 
-        return $this->returnErrorLogin();
+        return errors(['errors' => ['Credenciales incorrectas']], 400);
     }
 
     public function loginGoogle(Request $request){
@@ -39,7 +39,7 @@ class AuthenticationController extends Controller
             return $this->collectAndReturnUserData($token, $user);
         }
 
-        return $this->returnErrorLogin();
+        return errors(['errors' => ['Credenciales incorrectas']], 400);
     }
 
 
@@ -51,15 +51,10 @@ class AuthenticationController extends Controller
         return responseUser($userCollect,200);
     }
 
-    public function returnErrorLogin(){
-        errors(['errors' => ['Credenciales incorrectas']], 400);
-    }
-
     public function register(StoreUserRegisterRequest $request){
         $request->validated();
-        $newUser = RegisterUser::register($request->all());
+        $newUser = RegisterUser::register($request);
         return responseUser($newUser,200);
-        
     }
 
     public function logout(){

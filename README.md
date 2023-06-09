@@ -4,10 +4,7 @@ composer update
 | composer install
 | php artisan key:generate
 | php artisan migrate
-| php artisan db:seed --class=RolesSeeder
-| php artisan db:seed --class=PermisosSeeder
-| php artisan db:seed --class=RolesPermisosSeeder
-| php artisan db:seed --class=UsersSeeder
+| php artisan db:seed --class=DatabaseSeeder
 
 php artisan clear-compiled 
 | composer dump-autoload

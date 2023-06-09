@@ -13,7 +13,7 @@
 
         $data = $request->all();
         $data["user_id"] = auth()->user()->id;
-        $data["fondos_recaudado_actual"] = 0;
+        //$data["fondos_recaudado_actual"] = 0;
 
         $newCampaña = new Campaña($data);
 
@@ -22,8 +22,13 @@
         try{
             $newCampaña->save();
             if($request->hasFile("images")){
-               $files = $request->file("images");
-               UploadImage::uploadImage($files, $newCampaña->id, Campaña::class);
+               $dataImage = [
+                    "disk" => "imagenesCampañas", 
+                    "files" => $request->file("images"), 
+                    "imageable_id" => $newCampaña->id, 
+                    "imageable_type" => Campaña::class
+               ];
+               UploadImage::uploadImage($dataImage);
             }
             commit();
 

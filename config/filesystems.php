@@ -62,6 +62,12 @@ return [
             'url' => env('APP_URL').'/storage/imagenesCampañas',
             'visibility' => 'public',
         ],
+        'userImagenes' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/userImagenes/'),
+            'url' => env('APP_URL').'/storage/userImagenes',
+            'visibility' => 'public',
+        ],
 
     ],
 
