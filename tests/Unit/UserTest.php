@@ -13,12 +13,12 @@ class UserTest extends TestCase
      */
     /*public function test_login_success_user()
     {
-        $user = ['nombre' => 'tiagocae32', 'contraseña' => '123456789'];
+        $user = ['name' => 'tiagocae32', 'contraseña' => '123456789'];
         $response = $this->post('api/donate/login', $user);
         $response->assertStatus(200);
     }
 
     public function test_db_table_user(){
-        $this->assertDatabaseHas('users', ['nombre' => 'tiagocae32']);
+        $this->assertDatabaseHas('users', ['name' => 'tiagocae32']);
     }*/
 }

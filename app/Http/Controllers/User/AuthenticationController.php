@@ -20,7 +20,7 @@ class AuthenticationController extends Controller
 
     public function login(StoreUserLoginRequest $request){
         
-        $credentials = $request->only('nombre', 'contraseña');
+        $credentials = $request->only('name', 'password');
 
         $request->validated();
 

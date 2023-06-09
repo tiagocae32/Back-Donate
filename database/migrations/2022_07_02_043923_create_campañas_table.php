@@ -15,7 +15,7 @@ class CreateCampañasTable extends Migration
     {
         Schema::create('campañas', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
+            $table->string('name');
             $table->string('descripcion');
             $table->integer('fondos_a_recaudar');
             $table->integer('fondos_recaudado_actual')->default(0);

@@ -18,27 +18,27 @@ class UsersSeeder extends Seeder
     {
         $users = [
             [
-                'nombre' => 'tiagocae32',
+                'name' => 'tiagocae32',
                 'email' => 'tiagoviezzoli@gmail.com',
-                'contraseña' => Hash::make('123456789'),
+                'password' => Hash::make('123456789'),
                 'rol_id' => 1
             ],
             [
-                'nombre' => 'tiagocae98',
+                'name' => 'tiagocae98',
                 'email' => 'tiagocae98viezzoli@gmail.com',
-                'contraseña' => Hash::make('123456789'),
+                'password' => Hash::make('123456789'),
                 'rol_id' => 2
             ],
             [
-                'nombre' => 'mariano67',
+                'name' => 'mariano67',
                 'email' => 'mariano@gmail.com',
-                'contraseña' => Hash::make('123456789'),
+                'password' => Hash::make('123456789'),
                 'rol_id' => 2
             ],
             [
-                'nombre' => 'martin',
+                'name' => 'martin',
                 'email' => 'martin@gmail.com',
-                'contraseña' => Hash::make('123456789'),
+                'password' => Hash::make('123456789'),
                 'rol_id' => 3
             ]
         ];

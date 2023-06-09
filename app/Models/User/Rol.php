@@ -12,7 +12,7 @@ class Rol extends Model
 
     protected $table = "roles";
 
-    protected $fillable = ['nombre'];
+    protected $fillable = ['name'];
 
     public function users(){
         return $this->hasMany('App\Models\User', 'rol_id', 'id');
@@ -20,7 +20,7 @@ class Rol extends Model
 
     public static function validatorGeneral($input)
     {
-        $rules = ['nombre' => 'string|required|max:50'];
+        $rules = ['name' => 'string|required|max:50'];
         $validator = Validator::make($input, $rules);
         return $validator;
     }

@@ -5,7 +5,7 @@ use function Pest\Laravel\post;
 test("user create ok", function () {
 
     $user = [
-        "nombre" => fake()->nombre(),
+        "name" => fake()->name(),
         "email" => fake()->unique()->safeEmail(), 
         "rol_id" => fake()->numberBetween(1,3), 
         "contraseña" => fake()->contraseña()

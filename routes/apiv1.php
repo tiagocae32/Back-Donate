@@ -34,7 +34,7 @@ Route::prefix('donate')->group(function () {
          Route::get('/getCampanias','index');
          Route::get('/getCampania/{id}','getCampaña');
          Route::post('/crearCampania','store');
-         Route::get('/buscarCampanias/{nombre}','searchCampañas');
+         Route::get('/buscarCampanias/{name}','searchCampañas');
          Route::delete('/eliminarCampania/{id}','destroy');
       });
 

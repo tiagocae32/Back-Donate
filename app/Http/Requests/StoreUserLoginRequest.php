@@ -26,16 +26,16 @@ class StoreUserLoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => ['required', 'string', 'max:30'],
-            'contraseña' => ['required', 'string', 'max:20'],
+            'name' => ['required', 'string', 'max:30'],
+            'password' => ['required', 'string', 'max:20'],
         ];
     }
 
     public function messages()
     {
         return [
-            'nombre.required' => 'El nombre es obligatorio',
-            'contraseña.required' => 'La contraseña es obligatoria',
+            'name.required' => 'El name es obligatorio',
+            'password.required' => 'La contraseña es obligatoria',
         ];
     }
 

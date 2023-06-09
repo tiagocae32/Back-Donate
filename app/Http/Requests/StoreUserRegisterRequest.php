@@ -1,6 +1,6 @@
 <?php
 
-nombrespace App\Http\Requests;
+namespace App\Http\Requests;
 
 use App\Exceptions\ValidationsException;
 use Illuminate\Foundation\Http\FormRequest;
@@ -26,7 +26,7 @@ class StoreUserRegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => ['required', 'unique:users,nombre', 'string','min:5', 'max:30'],
+            'name' => ['required', 'unique:users,name', 'string','min:5', 'max:30'],
             'email' => ['required', 'unique:users,email', 'email', 'max:30'],
             'contraseña' => ['required', 'string', 'min:9', 'max:20'],
         ];
@@ -35,8 +35,8 @@ class StoreUserRegisterRequest extends FormRequest
     public function messages()
     {
         return [
-            'nombre.required' => 'El nombre es obligatorio',
-            'nombre.unique' => 'El nombre ya ha sido registrado',
+            'name.required' => 'El name es obligatorio',
+            'name.unique' => 'El name ya ha sido registrado',
             'email.required' => 'El mail es obligatorio',
             'email.unique' => 'El mail ya ha sido registrado',
             'contraseña.required' => 'La contraseña es obligatoria',

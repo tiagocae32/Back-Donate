@@ -24,7 +24,7 @@ class StoreCampañaRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'descripcion' => 'required|string|max:255',
             'fondos_a_recaudar' => 'required|integer'
         ];
