@@ -20,7 +20,7 @@ class SendEmailNewCampaña extends Command
      *
      * @var string
      */
-    protected $description = 'Envio de mails cuando se crea una campaña';
+    protected $descripcion = 'Envio de mails cuando se crea una campaña';
 
     /**
      * Execute the console command.
@@ -38,7 +38,7 @@ class SendEmailNewCampaña extends Command
 
         $this->info("Mail enviado");
         */
-        return "hola";
+        //return "hola";
         
     }
 }

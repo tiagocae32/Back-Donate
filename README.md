@@ -3,7 +3,7 @@
 composer update
 | composer install
 | php artisan key:generate
-| php artisan migrate
+| correr migraciones => php artisan migrate 
 | php artisan db:seed --class=DatabaseSeeder
 
 php artisan clear-compiled 

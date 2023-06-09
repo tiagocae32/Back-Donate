@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Campañas;
+nombrespace App\Http\Controllers\Campañas;
 
 use App\Http\Controllers\CrudResourceController;
 use App\Http\Requests\StoreCampañaRequest;
@@ -20,16 +20,16 @@ class CampañasController extends Controller //CrudResourceController
 
     // Retorna todas las campañias salvo las del usuario que esta logueado
     public function index(){
-       $campañas = Campaña::select(['id','name','description','fondos_a_recaudar','fondos_recaudado_actual','user_id'])
+       $campañas = Campaña::select(['id','nombre','descripcion','fondos_a_recaudar','fondos_recaudado_actual','user_id'])
        ->with([
         'user' => function($query) {
-            $query->select(['id','name']);
+            $query->select(['id','nombre']);
         },
         'comentarios' => function ($query){
             $query->select(['id','campaña_id', 'user_id', 'comentario', 'created_at']);
         },
         'comentarios.user' => function ($query){
-            $query->select(['id','name']);
+            $query->select(['id','nombre']);
         },
         'imagenes' => function ($query){
             $query->select(['imageable_id', 'path']);
@@ -45,8 +45,8 @@ class CampañasController extends Controller //CrudResourceController
     }
 
     //Busca las campañas que contengan la palabra ingresada por el usuario. Buscamos por nombre de campaña
-    public function searchCampañas($name){
-        $campañas = Campaña::campañas($name);
+    public function searchCampañas($nombre){
+        $campañas = Campaña::campañas($nombre);
         return $campañas;
     }
 

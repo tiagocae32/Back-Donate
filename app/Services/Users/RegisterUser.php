@@ -12,7 +12,7 @@
         public static function register(Request $request){
             startTransaction();
             $data = $request->all();
-            $data['password'] = Hash::make($data['password']);
+            $data['contraseña'] = Hash::make($data['contraseña']);
             $data['rol_id'] = 2;
             $newUser = new User($data);
             $newUser->save();

@@ -15,8 +15,8 @@ class CreateCampañasTable extends Migration
     {
         Schema::create('campañas', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('description');
+            $table->string('nombre');
+            $table->string('descripcion');
             $table->integer('fondos_a_recaudar');
             $table->integer('fondos_recaudado_actual')->default(0);
             $table->bigInteger("user_id")->unsigned();

@@ -14,8 +14,8 @@ class Campaña extends Model
     protected $table = "campañas";
 
     protected $fillable = [
-        'name',
-        'description',
+        'nombre',
+        'descripcion',
         'fondos_a_recaudar',
         'fondos_recaudado_actual',
         'user_id',

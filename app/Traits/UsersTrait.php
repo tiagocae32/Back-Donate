@@ -10,28 +10,28 @@ trait UsersTrait {
 
     protected static function booted(){
         static::addGlobalScope('orderUsers', function (Builder $builder) {
-            $builder->orderBy("name");
+            $builder->orderBy("nombre");
         });
     }
 
     //Scopes
     public static function scopeUsers($query, $username){
-        return $query->where('id', '!=', 1)->where('name', 'like', '%' . $username . '%')->with(["campañas", "rol"])->get();
+        return $query->where('id', '!=', 1)->where('nombre', 'like', '%' . $username . '%')->with(["campañas", "rol"])->get();
     }
 
     public static function datosUser($idLoginGoogle = null){
         $id = !$idLoginGoogle ? Auth::id() : $idLoginGoogle;
 
-        $user = User::select(['id', "email", "name", "rol_id"])->with([
+        $user = User::select(['id', "email", "nombre", "rol_id"])->with([
             'campañas',
             'campañas.comentarios' => function($query){
                 $query->select(['id','campaña_id', 'user_id' ,'created_at', 'comentario']);
             },
             'campañas.comentarios.user' => function($query){
-                $query->select(['id','name','created_at']);
+                $query->select(['id','nombre','created_at']);
             },
             'campañas.user' => function ($query){
-                $query->select(['id','name', 'email']);
+                $query->select(['id','nombre', 'email']);
             },
             'campañas.imagenes' => function ($query){
                 $query->select(['id','imageable_id', 'path']);
