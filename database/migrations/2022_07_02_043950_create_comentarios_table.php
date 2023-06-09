@@ -18,8 +18,6 @@ class CreateComentariosTable extends Migration
             $table->bigInteger("user_id")->unsigned();
             $table->bigInteger("campaña_id")->unsigned();
             $table->text('comentario');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('campaña_id')->references('id')->on('campañas');
             $table->timestamps();
             $table->softDeletes();
         });

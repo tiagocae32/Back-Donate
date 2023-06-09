@@ -20,7 +20,6 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password', 100);
             $table->bigInteger("rol_id")->unsigned();
-            $table->foreign('rol_id')->references('id')->on('users');
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

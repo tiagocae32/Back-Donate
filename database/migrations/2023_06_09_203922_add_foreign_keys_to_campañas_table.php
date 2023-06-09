@@ -13,12 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('donaciones', function (Blueprint $table) {
-            $table->id();
-            $table->integer("dinero_donado");
-            $table->bigInteger("user_id")->unsigned();
-            $table->bigInteger("campaña_id")->unsigned();
-            $table->timestamps();
+        Schema::table('campañas', function (Blueprint $table) {
+            $table->foreign(['user_id'], 'fk-users-campañas')->references(['id'])->on('users');
         });
     }
 
@@ -29,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('donaciones');
+        Schema::table('campañas', function (Blueprint $table) {
+            $table->dropForeign(["fk-users-campañas"]);
+        });
     }
 };
