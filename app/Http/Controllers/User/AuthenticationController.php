@@ -19,12 +19,14 @@ class AuthenticationController extends Controller
     }
 
     public function login(StoreUserLoginRequest $request){
-        
-        $credentials = $request->only('name', 'password');
 
         $request->validated();
+        
+        $usernameOrEmail = $request->input('name_or_email');
+        $field = !filter_var($usernameOrEmail, FILTER_VALIDATE_EMAIL) ? 'name' : 'email';
+        $password = $request->input("password");
 
-        if($token = JWTAuth::attempt($credentials)){
+        if($token = JWTAuth::attempt([$field => $usernameOrEmail, 'password' => $password])){
             return $this->collectAndReturnUserData($token);
         }
 

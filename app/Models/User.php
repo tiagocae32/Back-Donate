@@ -20,6 +20,9 @@ class User extends Authenticatable implements JWTSubject
 
     protected $table = "users";
 
+
+    const USER_ID_ADMIN = 1;
+
     const ALLRELATIONS = [
         'campañas',
         'campañas.comentarios',

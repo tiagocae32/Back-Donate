@@ -13,7 +13,7 @@ trait CampañasTrait {
         });
     }
 
-    public function scopeCampañas($query, $nameCampaña){
+    public function scopeCampañas(Builder $query, $nameCampaña){
         return $query->whereNotIn('user_id', [auth()->user()->id])->where('name', 'like', '%' . $nameCampaña . '%')->with(self::MODEL_RELATIONS)->get();
     }
 

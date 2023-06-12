@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use App\Exceptions\ValidationsException;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Validation\Rule;
 
 class StoreUserLoginRequest extends FormRequest
 {
@@ -26,7 +27,7 @@ class StoreUserLoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string', 'max:30'],
+            'name_or_email' => ['required', 'string', 'max:30'],
             'password' => ['required', 'string', 'max:20'],
         ];
     }
@@ -34,7 +35,7 @@ class StoreUserLoginRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'El name es obligatorio',
+            //'name.required' => 'El name es obligatorio',
             'password.required' => 'La contraseña es obligatoria',
         ];
     }

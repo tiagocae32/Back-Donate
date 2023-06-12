@@ -15,8 +15,11 @@ trait UsersTrait {
     }
 
     //Scopes
-    public static function scopeUsers($query, $username){
-        return $query->where('id', '!=', 1)->where('name', 'like', '%' . $username . '%')->with(["campañas", "rol"])->get();
+    public static function scopeUsers(Builder $query, $username){
+        return $query->where('id', '!=', User::USER_ID_ADMIN)
+                     ->where('name', 'like', '%' . $username . '%')
+                     ->with(["campañas", "rol"])
+                     ->get();
     }
 
     public static function datosUser($idLoginGoogle = null){
