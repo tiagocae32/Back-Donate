@@ -35,7 +35,7 @@ class StoreUserLoginRequest extends FormRequest
     public function messages()
     {
         return [
-            //'name.required' => 'El name es obligatorio',
+            'name.required' => 'El name es obligatorio',
             'password.required' => 'La contraseña es obligatoria',
         ];
     }
