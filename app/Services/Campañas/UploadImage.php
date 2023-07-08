@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Services\Campañas;
-use App\Models\Campaña\Image;
+use App\Models\DataProviders\Image;
 use Illuminate\Support\Facades\Storage;
 
 class UploadImage {

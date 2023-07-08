@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Campañas;
+namespace App\Http\Controllers\Core;
 
-use App\Models\Campaña\Campaña;
-use App\Models\Campaña\Donacion;
+use App\Models\Core\Campaña;
+use App\Models\Core\Donacion;
 use Exception;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;

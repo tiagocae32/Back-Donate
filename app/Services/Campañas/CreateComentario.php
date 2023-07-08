@@ -3,7 +3,7 @@
  namespace App\Services\Campañas;
  
  use App\Http\Requests\StoreComentarioRequest;
- use App\Models\Campaña\Comentario;
+ use App\Models\Core\Comentario;
  use Exception;
  
  class CreateComentario {

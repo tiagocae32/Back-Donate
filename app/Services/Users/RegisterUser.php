@@ -2,7 +2,7 @@
 
     namespace App\Services\Users;
 
-    use App\Models\User;
+    use App\Models\Core\User;
     use App\Services\Campañas\UploadImage;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Hash;

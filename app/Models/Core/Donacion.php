@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Campaña;
+namespace App\Models\Core;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -20,11 +20,11 @@ class Donacion extends Model
 
     // Relaciones
     public function campaña(){
-        return $this->belongsTo('App\Models\Campaña\Campaña', 'campaña_id', 'id');
+        return $this->belongsTo(Campaña::class, 'campaña_id', 'id');
     }
 
     public function user(){
-        return $this->belongsTo('App\Models\User', 'user_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public static function validatorGeneral($data){

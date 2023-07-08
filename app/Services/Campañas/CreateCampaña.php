@@ -3,7 +3,7 @@
  namespace App\Services\Campañas;
  
  use App\Http\Requests\StoreCampañaRequest;
- use App\Models\Campaña\Campaña;
+ use App\Models\Core\Campaña;
  use Exception;
  use App\Services\Campañas\UploadImage;
  

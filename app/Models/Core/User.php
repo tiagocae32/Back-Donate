@@ -1,7 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Core;
 
+use App\Models\DataProviders\Rol;
+use App\Models\Core\Campaña;
+use App\Models\Core\Comentario;
+use App\Models\Core\Donacion;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -65,19 +69,19 @@ class User extends Authenticatable implements JWTSubject
 
     // Relaciones
     public function rol() {
-        return $this->belongsTo('App\Models\User\Rol', 'rol_id', 'id');
+        return $this->belongsTo(Rol::class, 'rol_id', 'id');
     }
     
     public function campañas(){
-        return $this->hasMany('App\Models\Campaña\Campaña', 'user_id', 'id')->orderBy("created_at", "desc");
+        return $this->hasMany(Campaña::class, 'user_id', 'id')->orderBy("created_at", "DESC");
     }
 
     public function comentarios(){
-        return $this->hasMany('App\Models\Campaña\Comentario', 'user_id', 'id');
+        return $this->hasMany(Comentario::class, 'user_id', 'id');
     }
 
     public function donaciones(){
-        return $this->hasMany('App\Models\Campaña\Donacion', 'user_id', 'id');
+        return $this->hasMany(Donacion::class, 'user_id', 'id');
     }
 
     public static function permisos(){

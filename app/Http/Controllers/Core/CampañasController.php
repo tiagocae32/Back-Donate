@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Campañas;
+namespace App\Http\Controllers\Core;
 
 use App\Http\Controllers\CrudResourceController;
 use App\Http\Requests\StoreCampañaRequest;
-use App\Models\Campaña\Campaña;
+use App\Models\Core\Campaña;
 use App\Services\Campañas\CreateCampaña;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;

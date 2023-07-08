@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Authentication;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserLoginRequest;
 use App\Http\Requests\StoreUserRegisterRequest;
-use App\Models\User;
+use App\Models\Core\User;
 use App\Services\Users\RegisterUser;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Facades\JWTAuth;

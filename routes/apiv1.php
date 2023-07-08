@@ -1,10 +1,11 @@
 <?php
-use App\Http\Controllers\User\AuthenticationController;
-use App\Http\Controllers\Campañas\CampañasController;
-use App\Http\Controllers\Campañas\ComentariosController;
-use App\Http\Controllers\Campañas\DonacionesController;
-use App\Http\Controllers\Campañas\PdfCampañaController;
-use App\Http\Controllers\User\UsersController;
+use App\Http\Controllers\DataProviders\DataProviderController;
+use App\Http\Controllers\Authentication\AuthenticationController;
+use App\Http\Controllers\Core\CampañasController;
+use App\Http\Controllers\Core\ComentariosController;
+use App\Http\Controllers\Core\DonacionesController;
+use App\Http\Controllers\Core\PdfCampañaController;
+use App\Http\Controllers\Core\UsersController;
 use App\Http\Middleware\CheckToken;
 
 Route::prefix('donate')->group(function () {
@@ -53,5 +54,9 @@ Route::prefix('donate')->group(function () {
         Route::controller(PdfCampañaController::class)->group(function () {
             Route::get('/descargarPdfCampania','downloadPdfCampaña');
         });
+
+        // Data Provider
+
+        Route::get('dataProviders', [DataProviderController::class, 'index']);
      }); 
 });

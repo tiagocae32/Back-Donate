@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Campañas;
+namespace App\Http\Controllers\Core;
 
-use App\Models\Campaña\Campaña;
+use App\Models\Core\Campaña;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;

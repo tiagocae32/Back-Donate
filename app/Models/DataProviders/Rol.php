@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\User;
+namespace App\Models\DataProviders;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -15,7 +15,7 @@ class Rol extends Model
     protected $fillable = ['name'];
 
     public function users(){
-        return $this->hasMany('App\Models\User', 'rol_id', 'id');
+        return $this->hasMany(User::class, 'rol_id', 'id');
     }
 
     public static function validatorGeneral($input)

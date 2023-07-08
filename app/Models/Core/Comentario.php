@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Campaña;
+namespace App\Models\Core;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -23,10 +23,10 @@ class Comentario extends Model
     //Relaciones
     public function user()
     {
-        return $this->belongsTo('App\Models\User', 'user_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
     public function campaña()
     {
-        return $this->belongsTo('App\Models\Campaña\Campaña', 'user_id', 'id');
+        return $this->belongsTo(Campaña::class, 'user_id', 'id');
     }
 }

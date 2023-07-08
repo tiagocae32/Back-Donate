@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\User\Rol;
+use App\Models\DataProviders\Rol;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 

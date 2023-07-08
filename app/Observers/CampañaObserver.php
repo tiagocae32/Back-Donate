@@ -3,7 +3,7 @@
 namespace App\Observers;
 
 use App\Mail\EmailNotificationAdmin;
-use App\Models\Campaña\Campaña;
+use App\Models\Core\Campaña;
 use Illuminate\Support\Facades\Mail;
 
 class CampañaObserver
@@ -11,7 +11,7 @@ class CampañaObserver
     /**
      * Handle the Campania "created" event.
      *
-     * @param  \App\Models\Campaña\Campaña $campaña
+     * @param  \App\Models\Core\Campaña $campaña
      * @return void
      */
     public function created(Campaña $campaña)
@@ -28,7 +28,7 @@ class CampañaObserver
     /**
      * Handle the Campania "updated" event.
      *
-     * @param  \App\Models\Campaña\Campaña $campaña
+     * @param  \App\Models\Core\Campaña $campaña
      * @return void
      */
     public function updated(Campaña $campaña)
@@ -39,7 +39,7 @@ class CampañaObserver
     /**
      * Handle the Campania "deleted" event.
      *
-     * @param  \App\Models\Campaña\Campaña $campaña
+     * @param  \App\Models\Core\Campaña $campaña
      * @return void
      */
     public function deleted(Campaña $campaña)

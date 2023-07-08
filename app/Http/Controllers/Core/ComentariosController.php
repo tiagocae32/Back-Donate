@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Campañas;
+namespace App\Http\Controllers\Core;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\CrudResourceController;
 use App\Http\Requests\StoreComentarioRequest;
-use App\Models\Campaña\Comentario;
+use App\Models\Core\Comentario;
 use App\Services\Campañas\CreateComentario;
 
 class ComentariosController extends Controller //CrudResourceController
