@@ -27,7 +27,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('donaciones', function (Blueprint $table) {
-            $table->dropForeign(["fk-donaciones-campañas", "fk-donaciones-users"]);
+            $table->dropForeign(['fk-donaciones-campañas', 'fk-donaciones-users']);
         });
     }
 };

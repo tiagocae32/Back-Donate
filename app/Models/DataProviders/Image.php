@@ -12,14 +12,15 @@ class Image extends Model
     protected $fillable = [
         'path',
         'imageable_id',
-        'imageable_type'
+        'imageable_type',
     ];
 
     /*public function campaña(){
         return $this->belongsTo('App\Models\Campaña\Campaña', 'campaña_id', 'id');
     }*/
 
-    public function imageable(){
+    public function imageable()
+    {
         return $this->morphTo();
     }
 }

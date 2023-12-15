@@ -10,12 +10,12 @@ use Illuminate\Http\Request;
 
 class DataProviderController extends Controller
 {
-    
-    public function index(Request $request){
+    public function index(Request $request)
+    {
 
         $data = $request->all();
 
-        $arrModels = explode(",", $data['models']);
+        $arrModels = explode(',', $data['models']);
 
         $dataProviders = [];
 
@@ -24,10 +24,9 @@ class DataProviderController extends Controller
             'campañas' => Campaña::class,
             'donaciones' => Donacion::class,
         ];
-        
 
-        foreach($arrModels as $model){
-            if(isset($keyValueModels[$model])){
+        foreach ($arrModels as $model) {
+            if (isset($keyValueModels[$model])) {
                 $modelNamespace = $keyValueModels[$model];
                 $items = resolve($modelNamespace);
                 $dataProviders[$model] = $items->all();

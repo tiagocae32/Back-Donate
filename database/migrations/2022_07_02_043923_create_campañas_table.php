@@ -19,7 +19,7 @@ class CreateCampañasTable extends Migration
             $table->string('descripcion');
             $table->integer('fondos_a_recaudar');
             $table->integer('fondos_recaudado_actual')->default(0);
-            $table->bigInteger("user_id")->unsigned();
+            $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
         });

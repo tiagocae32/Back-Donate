@@ -9,6 +9,5 @@ class RolPermiso extends Model
 {
     use HasFactory;
 
-
-    protected $table = "roles_permisos";
+    protected $table = 'roles_permisos';
 }

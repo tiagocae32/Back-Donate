@@ -9,9 +9,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Campaña extends Model
 {
-    use HasFactory, CampañasTrait;
+    use CampañasTrait, HasFactory;
 
-    protected $table = "campañas";
+    protected $table = 'campañas';
 
     protected $fillable = [
         'name',
@@ -22,26 +22,29 @@ class Campaña extends Model
     ];
 
     const MODEL_RELATIONS = [
-        "user",
-        "comentarios",
-        "imagenes"
+        'user',
+        'comentarios',
+        'imagenes',
     ];
 
-    //Relaciones    
-    public function user(){
+    //Relaciones
+    public function user()
+    {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
-    public function comentarios(){
+    public function comentarios()
+    {
         return $this->hasMany(Comentario::class, 'campaña_id', 'id');
     }
 
-    public function donaciones(){
+    public function donaciones()
+    {
         return $this->hasMany(Donacion::class, 'campaña_id', 'id');
     }
 
-    public function imagenes(){
+    public function imagenes()
+    {
         return $this->morphMany(Image::class, 'imageable'); //$this->hasMany('App\Models\Campaña\Image', 'campaña_id', 'id');
     }
-    
 }

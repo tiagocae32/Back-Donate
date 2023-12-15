@@ -10,11 +10,12 @@ class Rol extends Model
 {
     use HasFactory;
 
-    protected $table = "roles";
+    protected $table = 'roles';
 
     protected $fillable = ['name'];
 
-    public function users(){
+    public function users()
+    {
         return $this->hasMany(User::class, 'rol_id', 'id');
     }
 
@@ -22,6 +23,7 @@ class Rol extends Model
     {
         $rules = ['name' => 'string|required|max:50'];
         $validator = Validator::make($input, $rules);
+
         return $validator;
     }
 }

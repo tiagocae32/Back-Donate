@@ -10,7 +10,7 @@ class Donacion extends Model
 {
     use HasFactory;
 
-    protected $table = "donaciones";
+    protected $table = 'donaciones';
 
     protected $fillable = [
         'dinero_donado',
@@ -19,19 +19,22 @@ class Donacion extends Model
     ];
 
     // Relaciones
-    public function campaña(){
+    public function campaña()
+    {
         return $this->belongsTo(Campaña::class, 'campaña_id', 'id');
     }
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
-    public static function validatorGeneral($data){
+    public static function validatorGeneral($data)
+    {
         $rules = [
-            'dinero_donado' => ['required','integer'],
-            'campaña_id' => ['required','integer','exists:campañas,id'],
-            'user_id' => ['required','integer','exists:users,id']
+            'dinero_donado' => ['required', 'integer'],
+            'campaña_id' => ['required', 'integer', 'exists:campañas,id'],
+            'user_id' => ['required', 'integer', 'exists:users,id'],
         ];
 
         $validator = Validator::make($data, $rules);

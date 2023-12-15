@@ -1,14 +1,15 @@
 <?php
- 
- namespace App\Services\Campañas;
- 
- use App\Http\Requests\StoreComentarioRequest;
- use App\Models\Core\Comentario;
- use Exception;
- 
- class CreateComentario {
 
-    public static function create(StoreComentarioRequest $request){
+namespace App\Services\Campañas;
+
+use App\Http\Requests\StoreComentarioRequest;
+use App\Models\Core\Comentario;
+use Exception;
+
+class CreateComentario
+{
+    public static function create(StoreComentarioRequest $request)
+    {
 
         startTransaction();
 
@@ -17,16 +18,16 @@
         $newComentario = Comentario::create([
             'user_id' => auth()->user()->id,
             'campaña_id' => $data['campaña_id'],
-            'comentario' => $data['comentario']
+            'comentario' => $data['comentario'],
         ]);
-        try{
+        try {
             commit();
-            return $newComentario->load("user"); // Devolviendo el comentario con su respectiva relacion
-        }catch(Exception $exception){
+
+            return $newComentario->load('user'); // Devolviendo el comentario con su respectiva relacion
+        } catch (Exception $exception) {
             rollBack();
+
             return responseUser(['message' => $exception->getMessage()], 500);
         }
     }
- }
-
-?>
+}

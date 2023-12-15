@@ -3,11 +3,8 @@
 namespace App\Models\Core;
 
 use App\Models\DataProviders\Rol;
-use App\Models\Core\Campaña;
-use App\Models\Core\Comentario;
-use App\Models\Core\Donacion;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Builder;
+use App\Traits\UsersTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -16,24 +13,23 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
-use App\Traits\UsersTrait;
 
 class User extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes, UsersTrait;
 
-    protected $table = "users";
+    protected $table = 'users';
 
     const ALLRELATIONS = [
         'campañas',
         'campañas.comentarios',
         'campañas.comentarios.user',
         'campañas.user',
-        'campañas.imagenes'    
+        'campañas.imagenes',
     ];
 
     const RELATIONSUSERADMIN = [
-        'campañas',  
+        'campañas',
     ];
 
     /**
@@ -45,7 +41,7 @@ class User extends Authenticatable implements JWTSubject
         'name',
         'email',
         'password',
-        'rol_id'    
+        'rol_id',
     ];
 
     /**
@@ -68,46 +64,54 @@ class User extends Authenticatable implements JWTSubject
     ];
 
     // Relaciones
-    public function rol() {
+    public function rol()
+    {
         return $this->belongsTo(Rol::class, 'rol_id', 'id');
     }
-    
-    public function campañas(){
-        return $this->hasMany(Campaña::class, 'user_id', 'id')->orderBy("created_at", "DESC");
+
+    public function campañas()
+    {
+        return $this->hasMany(Campaña::class, 'user_id', 'id')->orderBy('created_at', 'DESC');
     }
 
-    public function comentarios(){
+    public function comentarios()
+    {
         return $this->hasMany(Comentario::class, 'user_id', 'id');
     }
 
-    public function donaciones(){
+    public function donaciones()
+    {
         return $this->hasMany(Donacion::class, 'user_id', 'id');
     }
 
-    public static function permisos(){
+    public static function permisos()
+    {
         return DB::table('permisos')
-                ->select('permisos.permiso')
-                ->join('roles_permisos', 'permisos.id', '=', 'roles_permisos.permiso_id')
-                ->join('roles','roles.id','=','roles_permisos.rol_id')
-                ->join('users','users.rol_id','=','roles.id')
-                ->where('users.id', Auth::id())
-                ->get();
+            ->select('permisos.permiso')
+            ->join('roles_permisos', 'permisos.id', '=', 'roles_permisos.permiso_id')
+            ->join('roles', 'roles.id', '=', 'roles_permisos.rol_id')
+            ->join('users', 'users.rol_id', '=', 'roles.id')
+            ->where('users.id', Auth::id())
+            ->get();
     }
 
-
-	/**
-	 * Get the identifier that will be stored in the subject claim of the JWT.
-	 * @return mixed
-	 */
-	public function getJWTIdentifier() {
+    /**
+     * Get the identifier that will be stored in the subject claim of the JWT.
+     *
+     * @return mixed
+     */
+    public function getJWTIdentifier()
+    {
         return $this->getKey();
-	}
-	
-	/**
-	 * Return a key value array, containing any custom claims to be added to the JWT.
-	 * @return array
-	 */
-	public function getJWTCustomClaims() {
+    }
+
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims()
+    {
         return [];
-	}
+    }
 }

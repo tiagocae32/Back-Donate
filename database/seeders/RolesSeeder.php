@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\DataProviders\Rol;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class RolesSeeder extends Seeder
@@ -26,11 +25,11 @@ class RolesSeeder extends Seeder
             ],
             [
                 'id' => 3,
-                'rol' => 'Guest'
-            ]
-                
+                'rol' => 'Guest',
+            ],
+
         ];
-        foreach($roles as $rol) {
+        foreach ($roles as $rol) {
             Rol::create($rol);
         }
     }

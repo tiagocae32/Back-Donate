@@ -10,14 +10,13 @@ class Comentario extends Model
     use HasFactory;
 
     // Model Table
-    protected $table = "comentarios";
+    protected $table = 'comentarios';
 
-    
     //Fillable
     protected $fillable = [
         'user_id',
         'campaña_id',
-        'comentario'
+        'comentario',
     ];
 
     //Relaciones
@@ -25,6 +24,7 @@ class Comentario extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
     public function campaña()
     {
         return $this->belongsTo(Campaña::class, 'user_id', 'id');
