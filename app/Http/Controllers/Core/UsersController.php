@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Core;
 use App\Http\Controllers\Controller;
 use App\Models\Core\User;
 use Exception;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
@@ -62,41 +61,35 @@ class UsersController extends Controller
         return $user;
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        $user = User::find($id);
-
         try {
             startTransaction();
-
-            $user->name = $request->input('user');
-            $user->email = $request->input('email');
-
-            $user->save();
-            commit();
-
-            return responseUser($user, 200);
+            $user->update($request->all());
         } catch (Exception $error) {
             rollback();
             responseUser(['message' => $error->getMessage()], 500);
         }
+        commit();
+
+        return responseUser($user, 200);
     }
 
-    public function delete($id)
+    public function delete(User $user)
     {
-        $user = User::find($id);
         $user->delete();
     }
 
-    public function restoreUser($id)
+    public function restoreUser(User $user)
     {
         try {
-            $userRestore = User::onlyTrashed()->findOrFail($id);
-            $userRestore->restore();
-        } catch (ModelNotFoundException $error) {
-            responseUser(['message' => $error->getMessage()], 404);
+            if ($user->trashed()) {
+                $user->restore();
+            }
         } catch (Exception $error) {
             responseUser(['message' => $error->getMessage()], 500);
         }
+
+        return responseUser($user, 200);
     }
 }

@@ -26,7 +26,7 @@ Route::prefix('donate')->group(function () {
         Route::controller(UsersController::class)->group(function () {
             Route::get('/getUserInfo', 'getUserInfo');
             Route::get('/getUsers', 'index');
-            Route::put('/editarUsuario/{id}', 'update');
+            Route::put('/editarUsuario/{user}', 'update');
             Route::get('/buscarUsuarios/{user}', 'searchUsers');
         });
 
@@ -37,7 +37,7 @@ Route::prefix('donate')->group(function () {
             Route::get('/getCampania/{campaña}', 'getCampaña');
             Route::post('/crearCampania', 'store');
             Route::get('/buscarCampanias/{name}', 'searchCampañas');
-            Route::delete('/eliminarCampania/{id}', 'destroy');
+            Route::delete('/eliminarCampania/{campaña}', 'destroy');
         });
 
         // Comentarios routes

@@ -69,14 +69,13 @@ class CampañasController extends Controller //CrudResourceController
     // Elimina una campaña
     public function destroy(Campaña $campaña)
     {
-        $campañaDelete = Campaña::find($campaña->id);
-        if (auth()->user()->id === $campañaDelete->user_id) {
-            $campañaDelete->comentarios()->delete();
-            $campañaDelete->imagenes()->delete();
-            $campañaDelete->donaciones()->delete();
-            $campañaDelete->delete();
+        if (auth()->user()->id === $campaña->user_id) {
+            $campaña->comentarios()->delete();
+            $campaña->imagenes()->delete();
+            $campaña->donaciones()->delete();
+            $campaña->delete();
 
-            return responseUser($campañaDelete->id, 200);
+            return responseUser($campaña->id, 200);
         }
     }
 }
