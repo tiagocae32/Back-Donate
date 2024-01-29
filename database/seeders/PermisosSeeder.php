@@ -2,8 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\User\Permiso;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\DataProviders\Permiso;
 use Illuminate\Database\Seeder;
 
 class PermisosSeeder extends Seeder
@@ -22,7 +21,7 @@ class PermisosSeeder extends Seeder
             ['permiso' => 'Crear comentario'],
             ['permiso' => 'Realizar donacion'],
         ];
-        foreach($permisos as $permiso) {
+        foreach ($permisos as $permiso) {
             Permiso::firstOrCreate($permiso);
         }
     }

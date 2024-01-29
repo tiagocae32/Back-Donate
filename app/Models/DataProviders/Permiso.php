@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Models\User;
+namespace App\Models\DataProviders;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class RolPermiso extends Model
+class Permiso extends Model
 {
     use HasFactory;
 
-
-    protected $table = "roles_permisos";
+    protected $table = 'permisos';
 }

@@ -26,7 +26,7 @@ class StoreCampañaRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'descripcion' => 'required|string|max:255',
-            'fondos_a_recaudar' => 'required|integer'
+            'fondos_a_recaudar' => 'required|integer',
         ];
     }
 }

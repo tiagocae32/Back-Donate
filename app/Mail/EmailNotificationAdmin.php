@@ -5,8 +5,6 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
-use Illuminate\Mail\Mailables\Content;
-use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
 class EmailNotificationAdmin extends Mailable implements ShouldQueue
@@ -14,7 +12,9 @@ class EmailNotificationAdmin extends Mailable implements ShouldQueue
     use Queueable, SerializesModels;
 
     public $subject;
+
     public $msg;
+
     public $address;
 
     /**
@@ -22,7 +22,7 @@ class EmailNotificationAdmin extends Mailable implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($address,$subject, $msg)
+    public function __construct($address, $subject, $msg)
     {
         $this->address = $address;
         $this->subject = $subject;
@@ -30,13 +30,13 @@ class EmailNotificationAdmin extends Mailable implements ShouldQueue
     }
 
     /**
- * Build the message.
- *
- * @return $this
- */
+     * Build the message.
+     *
+     * @return $this
+     */
     public function build()
     {
-        $build = $this->from($this->address, "Tiago")->subject($this->subject)->view('emails/emailNotificationAdmin');
+        $build = $this->from($this->address, 'Tiago')->subject($this->subject)->view('emails/emailNotificationAdmin');
 
         return $build;
     }

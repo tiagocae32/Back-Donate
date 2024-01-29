@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 
 class CrudResourceController extends Controller implements ResourceController
 {
-
     // Variables
 
     public $model = null;
@@ -16,27 +15,29 @@ class CrudResourceController extends Controller implements ResourceController
     public $modelRelations = null;
 
     public $user_id = null;
-    
 
-    public function index(){
+    public function index()
+    {
         return $this->model::with($this->modelRelations)->get();
     }
 
-
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         //$request->validated();
 
-        startTransaction();  
+        startTransaction();
 
-        try{
+        try {
             $newEntity = $this->model::create($request->all());
-        }catch(Exception $exception){
+        } catch (Exception $exception) {
             rollback();
+
             return errors(['message' => $exception->getMessage()], 500);
         }
 
         commit();
         $newEntity = $newEntity->load($this->modelRelations);
+
         return responseUser($newEntity, 200);
     }
 }

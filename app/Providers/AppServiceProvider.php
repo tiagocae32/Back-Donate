@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Models\Campaña\Campaña;
+use App\Models\Core\Campaña;
 use App\Observers\CampañaObserver;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Telescope\TelescopeServiceProvider;

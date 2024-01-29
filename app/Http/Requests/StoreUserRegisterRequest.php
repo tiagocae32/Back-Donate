@@ -3,8 +3,8 @@
 namespace App\Http\Requests;
 
 use App\Exceptions\ValidationsException;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
 
 class StoreUserRegisterRequest extends FormRequest
 {
@@ -26,7 +26,7 @@ class StoreUserRegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'unique:users,name', 'string','min:5', 'max:30'],
+            'name' => ['required', 'unique:users,name', 'string', 'min:5', 'max:30'],
             'email' => ['required', 'unique:users,email', 'email', 'max:30'],
             'contraseña' => ['required', 'string', 'min:9', 'max:20'],
         ];
@@ -43,7 +43,8 @@ class StoreUserRegisterRequest extends FormRequest
         ];
     }
 
-    protected function failedValidation(Validator $validator){
-        throw new ValidationsException($validator,400);
+    protected function failedValidation(Validator $validator)
+    {
+        throw new ValidationsException($validator, 400);
     }
 }

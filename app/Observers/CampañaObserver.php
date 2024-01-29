@@ -3,7 +3,7 @@
 namespace App\Observers;
 
 use App\Mail\EmailNotificationAdmin;
-use App\Models\Campaña\Campaña;
+use App\Models\Core\Campaña;
 use Illuminate\Support\Facades\Mail;
 
 class CampañaObserver
@@ -11,16 +11,15 @@ class CampañaObserver
     /**
      * Handle the Campania "created" event.
      *
-     * @param  \App\Models\Campaña\Campaña $campaña
      * @return void
      */
     public function created(Campaña $campaña)
     {
         $userName = Auth()->user()->name;
 
-        $emailNotification = new EmailNotificationAdmin("tiagoviezzoli@gmail.com", 
-        "Campaña Creada", 
-        "El usuario $userName ha creado una campaña llamada {$campaña['name']} que tiene {$campaña['fondos_a_recaudar']} pesos como objetivo.");
+        $emailNotification = new EmailNotificationAdmin('tiagoviezzoli@gmail.com',
+            'Campaña Creada',
+            "El usuario $userName ha creado una campaña llamada {$campaña['name']} que tiene {$campaña['fondos_a_recaudar']} pesos como objetivo.");
 
         Mail::to('tiagoviezzoli@gmail.com')->send($emailNotification);
     }
@@ -28,7 +27,6 @@ class CampañaObserver
     /**
      * Handle the Campania "updated" event.
      *
-     * @param  \App\Models\Campaña\Campaña $campaña
      * @return void
      */
     public function updated(Campaña $campaña)
@@ -39,7 +37,6 @@ class CampañaObserver
     /**
      * Handle the Campania "deleted" event.
      *
-     * @param  \App\Models\Campaña\Campaña $campaña
      * @return void
      */
     public function deleted(Campaña $campaña)
@@ -50,7 +47,7 @@ class CampañaObserver
     /**
      * Handle the Campania "restored" event.
      *
-     * @param  \App\Models\Campaña\Campaña $campaña
+     * @param  \App\Models\Campaña\Campaña  $campaña
      * @return void
      */
     public function restored(Campaña $campaña)
@@ -61,7 +58,7 @@ class CampañaObserver
     /**
      * Handle the Campania "force deleted" event.
      *
-     * @param  \App\Models\Campaña\Campaña $campaña
+     * @param  \App\Models\Campaña\Campaña  $campaña
      * @return void
      */
     public function forceDeleted(Campaña $campaña)

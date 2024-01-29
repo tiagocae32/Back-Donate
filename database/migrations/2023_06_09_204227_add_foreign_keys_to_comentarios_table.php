@@ -27,7 +27,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('comentarios', function (Blueprint $table) {
-            $table->dropForeign(["fk-comentarios-users", "fk-comentarios-users"]);
+            $table->dropForeign(['fk-comentarios-users', 'fk-comentarios-users']);
         });
     }
 };
