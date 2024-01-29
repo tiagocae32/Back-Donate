@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 
 /*
@@ -14,7 +13,7 @@ use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 */
 
 uses(Tests\TestCase::class,
-    // Illuminate\Foundation\Testing\RefreshDatabase::class,
+// Illuminate\Foundation\Testing\RefreshDatabase::class,
 )->in('Unit');
 
 //uses(LazilyRefreshDatabase::class)->in('Unit');
@@ -45,10 +44,12 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function login()
-{
+
+function login(){
 
 }
+
+
 
 function something()
 {

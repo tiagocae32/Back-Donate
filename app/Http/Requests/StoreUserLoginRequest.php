@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use App\Exceptions\ValidationsException;
-use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Validation\Rule;
 
 class StoreUserLoginRequest extends FormRequest
 {
@@ -39,8 +40,8 @@ class StoreUserLoginRequest extends FormRequest
         ];
     }
 
-    protected function failedValidation(Validator $validator)
-    {
-        throw new ValidationsException($validator, 400);
+    protected function failedValidation(Validator $validator){
+        throw new ValidationsException($validator,400);
     }
+
 }

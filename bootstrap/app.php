@@ -1,6 +1,5 @@
 <?php
-
-require_once 'utilities.php';
+require_once('utilities.php');
 /*
 |--------------------------------------------------------------------------
 | Create The Application

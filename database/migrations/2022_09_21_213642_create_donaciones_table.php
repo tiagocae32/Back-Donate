@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('donaciones', function (Blueprint $table) {
             $table->id();
-            $table->integer('dinero_donado');
-            $table->bigInteger('user_id')->unsigned();
-            $table->bigInteger('campaña_id')->unsigned();
+            $table->integer("dinero_donado");
+            $table->bigInteger("user_id")->unsigned();
+            $table->bigInteger("campaña_id")->unsigned();
             $table->timestamps();
         });
     }
