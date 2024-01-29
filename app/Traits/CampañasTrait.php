@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use App\Models\Campaña\Campaña;
 use Illuminate\Database\Eloquent\Builder;
 
 trait CampañasTrait {
@@ -14,7 +15,7 @@ trait CampañasTrait {
     }
 
     public function scopeCampañas(Builder $query, $nameCampaña){
-        return $query->whereNotIn('user_id', [auth()->user()->id])->where('name', 'like', '%' . $nameCampaña . '%')->with(self::MODEL_RELATIONS)->get();
+        return $query->whereNotIn('user_id', [auth()->user()->id])->where('name', 'like', '%' . $nameCampaña . '%')->with(Campaña::MODEL_RELATIONS)->get();
     }
 
 }
